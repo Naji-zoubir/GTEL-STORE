@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTEL | Infrastructure Réseau - Connectivité Professionnelle</title>
+<meta name="description" content="Solutions d'infrastructure réseau complète : LAN, Wi-Fi professionnel, WAN, câblage structuré. Conception, déploiement et maintenance pour entreprises au Maroc.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Nunito:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style_IR.css">
+
+<script>document.documentElement.classList.add("gtel-shell-pending");</script>
+<link rel="stylesheet" href="shared-components.css?v=3">
+<link rel="stylesheet" href="gtel-unified-v5.css?v=6">
+</head>
+<body>
+
+<canvas id="backbone-canvas" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============================== HEADER / APP-SHELL NAV ============================== -->
+<header id="main-header">
+
+  <!-- Rail — navigation fixe verticale (desktop) -->
+  <div class="rail">
+    <a href="index.html" class="rail-logo" aria-label="GTEL - Accueil">
+      <img src="image/image.webp" alt="Logo GTEL" class="rail-logo-img">
+    </a>
+
+    <nav class="rail-nav-links" aria-label="Navigation principale">
+      <a href="index.html" class="rail-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5"></path><path d="M5 9.5V21h14V9.5"></path><path d="M9.5 21v-7h5v7"></path></svg>
+        <span class="tip-h" data-i18n="nav.home">Accueil</span>
+      </a>
+
+      <div class="rail-flyout-wrap">
+        <a href="index.html#solutions" class="rail-link is-active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>
+          <span class="tip-h" data-i18n="nav.solutions">Solutions</span>
+        </a>
+        <div class="rail-flyout">
+          <a href="InfraDigitale.html" data-i18n="nav.sol.digital">Infrastructure Digitale</a>
+          <a href="infrastructure-reseau.html" class="is-current" data-i18n="nav.sol.reseau">Infrastructure Réseau</a>
+          <a href="datacenter.html" data-i18n="nav.sol.datacenter">Datacenter</a>
+          <a href="cybersecurite.html" data-i18n="nav.sol.cyber">Cybersécurité</a>
+          <a href="videosurveillance.html" data-i18n="nav.sol.video">Vidéosurveillance</a>
+          <a href="controle-acces.html" data-i18n="nav.sol.access">Contrôle d'Accès</a>
+          <a href="telephonie-ip.html" data-i18n="nav.sol.telephony">Téléphonie IP</a>
+          <a href="salles-reunion.html" data-i18n="nav.sol.meeting">Salles de Réunion</a>
+          <a href="sonorisation.html" data-i18n="nav.sol.sound">Sonorisation</a>
+          <a href="services-manages.html" data-i18n="nav.sol.managed">Services Managés</a>
+          <a href="InfraDigitale.html" class="solutions-dropdown-link block px-6 py-2.5 text-xs font-bold transition-all duration-200" data-i18n="solutions.digitale.title">Infrastructure Digitale</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="rail-divider"></div>
+
+    <!-- Index de sections — remplace l'ancien dot-nav flottant -->
+    <nav class="rail-index side-nav" aria-label="Navigation rapide">
+      <a href="#hero" data-target="hero"><span class="idx">01</span><span class="bar"></span><span class="tip" data-i18n="hero.chip1">LAN &amp; WI-FI</span></a>
+      <a href="#s3" data-target="s3"><span class="idx">02</span><span class="bar"></span><span class="tip" data-i18n="s3.title">Symptômes</span></a>
+      <a href="#s1" data-target="s1"><span class="idx">03</span><span class="bar"></span><span class="tip" data-i18n="s1.title">Ce que nous traitons</span></a>
+      <a href="#s2" data-target="s2"><span class="idx">04</span><span class="bar"></span><span class="tip" data-i18n="s2.title">Nos engagements</span></a>
+      <a href="#s4" data-target="s4"><span class="idx">05</span><span class="bar"></span><span class="tip" data-i18n="s4.title">Méthodologie</span></a>
+      <a href="#s5" data-target="s5"><span class="idx">06</span><span class="bar"></span><span class="tip" data-i18n="s5.title">Réalisations</span></a>
+      <a href="#faq" data-target="faq"><span class="idx">07</span><span class="bar"></span><span class="tip" data-i18n="faq.title">FAQ</span></a>
+    </nav>
+
+    <div class="rail-bottom">
+      <button class="theme-icon-btn" id="theme-toggle" aria-label="Basculer thème clair/sombre" type="button">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+      </button>
+
+      <div class="lang-switcher rail-lang">
+        <button class="lang-trigger" id="current-lang-btn" aria-label="Changer de langue" type="button">
+          <span id="current-lang-flag">🇫🇷</span>
+          <span id="current-lang-code">FR</span>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-opt" data-lang-opt="fr" onclick="changeLanguage('fr')" type="button"><span>🇫🇷</span><span>Français</span></button>
+          <button class="lang-opt" data-lang-opt="ar" onclick="changeLanguage('ar')" type="button"><span>🇲🇦</span><span>العربية</span></button>
+          <button class="lang-opt" data-lang-opt="en" onclick="changeLanguage('en')" type="button"><span>🇬🇧</span><span>English</span></button>
+        </div>
+      </div>
+
+      <button class="rail-cta" onclick="openQuoteModal('Support')" type="button" aria-label="Nous Contacter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span class="tip-h" data-i18n="nav.contact">Nous Contacter</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Topbar — mobile uniquement -->
+  <div class="topbar-mobile wrap">
+    <a href="index.html" class="logo-link">
+      <img src="image/image.webp" alt="Logo GTEL" width="140" height="46" class="brand-logo">
+    </a>
+    <div class="topbar-actions">
+      <button class="icon-btn" onclick="openQuoteModal('Support')" type="button" aria-label="Nous Contacter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+      </button>
+      <button class="hamburger" id="mobile-hamburger" aria-label="Menu" aria-expanded="false" type="button">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile fullscreen menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-utility">
+      <button class="theme-icon-btn" onclick="toggleTheme()" type="button" aria-label="Basculer thème clair/sombre">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path></svg>
+      </button>
+      <div class="mobile-lang-row">
+        <button class="lang-pill" data-lang-opt="fr" onclick="changeLanguage('fr')" type="button">FR</button>
+        <button class="lang-pill" data-lang-opt="ar" onclick="changeLanguage('ar')" type="button">AR</button>
+        <button class="lang-pill" data-lang-opt="en" onclick="changeLanguage('en')" type="button">EN</button>
+      </div>
+    </div>
+    <a href="index.html" data-i18n="nav.home">Accueil</a>
+    <a href="index.html#solutions" data-i18n="nav.solutions">Solutions</a>
+    <div class="sub-label" data-i18n="nav.solutions">Solutions</div>
+    <a href="InfraDigitale.html" data-i18n="nav.sol.digital">Infrastructure Digitale</a>
+    <a href="infrastructure-reseau.html" data-i18n="nav.sol.reseau">Infrastructure Réseau</a>
+    <a href="datacenter.html" data-i18n="nav.sol.datacenter">Datacenter</a>
+    <a href="cybersecurite.html" data-i18n="nav.sol.cyber">Cybersécurité</a>
+    <a href="videosurveillance.html" data-i18n="nav.sol.video">Vidéosurveillance</a>
+    <a href="controle-acces.html" data-i18n="nav.sol.access">Contrôle d'Accès</a>
+    <a href="telephonie-ip.html" data-i18n="nav.sol.telephony">Téléphonie IP</a>
+    <a href="salles-reunion.html" data-i18n="nav.sol.meeting">Salles de Réunion</a>
+    <a href="sonorisation.html" data-i18n="nav.sol.sound">Sonorisation</a>
+    <a href="services-manages.html" data-i18n="nav.sol.managed">Services Managés</a>
+    <a href="catalogue.html" data-i18n="nav.catalogue">Catalogue</a>
+    <a href="#" data-close onclick="openQuoteModal('Support')" data-i18n="nav.contact" style="color:var(--primary)">Nous Contacter</a>
+  </div>
+</header>
+
+<!-- ============================== BREADCRUMB ============================== -->
+<nav class="breadcrumb" aria-label="Fil d'ariane">
+  <div class="wrap breadcrumb-inner">
+    <div class="breadcrumb-nav">
+      <a href="index.html" data-i18n="breadcrumb.home">Accueil</a>
+      <span class="breadcrumb-sep">&gt;</span>
+      <a href="index.html#solutions" data-i18n="breadcrumb.solutions">Nos Solutions</a>
+      <span class="breadcrumb-sep">&gt;</span>
+      <span class="current" data-i18n="breadcrumb.current">Infrastructure Réseau</span>
+    </div>
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      <span data-i18n="breadcrumb.back">Retour à l'accueil</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ============================== HERO — split texte / panneau live ============================== -->
+<section class="hero" id="hero">
+  <div class="wrap hero-split">
+    <div class="hero-text">
+      <span class="hero-badge"><span class="dot"></span><span data-i18n="hero.badge">Infrastructure &amp; Réseaux / Réseau d'Entreprise</span></span>
+      <h1 data-i18n="hero.title" data-i18n-gold-last>Concevoir, déployer et superviser l'épine dorsale numérique de <span class="accent-gold">votre entreprise.</span></h1>
+      <p data-i18n="hero.desc">Réseau local, Wi-Fi haute densité, interconnexion multi-sites, programmation structurée : nous traitons votre infrastructure comme un système, pas comme un assemblage d'équipements.</p>
+      <p class="hero-lifecycle" data-i18n="hero.lifecycle"><strong>Au-delà du catalogue :</strong> GTEL intervient sur l'ensemble du cycle de vie de votre infrastructure IT — depuis l'audit initial jusqu'à la supervision en exploitation.</p>
+      <button class="btn-outline" onclick="openQuoteModal('Infrastructure Réseau')" type="button">
+        <span data-i18n="hero.cta">Demander un audit d'infrastructure</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+    </div>
+
+    <div class="hero-panel">
+      <div class="hero-panel-head">
+        <span data-i18n="s1.title">Ce que nous traitons</span>
+        <span class="live"><i></i>LIVE</span>
+      </div>
+      <div class="hero-panel-row"><span class="lbl" data-i18n="hero.chip1">LAN &amp; WI-FI</span><span class="val">01</span></div>
+      <div class="hero-panel-row"><span class="lbl" data-i18n="hero.chip2">WAN Multi-sites</span><span class="val">02</span></div>
+      <div class="hero-panel-row"><span class="lbl" data-i18n="hero.chip3">Câblage structuré</span><span class="val">03</span></div>
+      <div class="hero-panel-row"><span class="lbl" data-i18n="s1.building.title">Bâtiments neufs et rénovation</span><span class="val">04</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SECTION — Symptômes (diagnostic) ============================== -->
+<section class="section-pad" id="s3">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <div class="node-eyebrow" data-i18n="s3.eyebrow">Section 2</div>
+      <h2 class="section-title" data-i18n="s3.title" data-i18n-gold-last>Symptômes d'une infrastructure sous-dimensionnée</h2>
+      <p class="section-sub" data-i18n="s3.sub">Si l'un de ces signaux vous est familier, votre réseau a probablement franchi son point de rupture :</p>
+    </div>
+
+    <div class="diag-grid reveal-stagger">
+      <div class="diag-card">
+        <div class="diag-flag"><span class="mark">01</span><span data-i18n="s3.row1.p">Lenteurs récurrentes en milieu de matinée et après-midi</span></div>
+        <p class="diag-impact"><span class="k" data-i18n="s3.head.impact">Impact métier</span><span data-i18n="s3.row1.i">Saturation de la bande passante. Vos applications cloud (ERP, messagerie, visio) entrent en compétition pour des ressources limitées.</span></p>
+      </div>
+      <div class="diag-card">
+        <div class="diag-flag"><span class="mark">02</span><span data-i18n="s3.row2.p">Wi-Fi instable en salle de réunion ou en open-space</span></div>
+        <p class="diag-impact"><span class="k" data-i18n="s3.head.impact">Impact métier</span><span data-i18n="s3.row2.i">Couverture insuffisante ou densité d'équipements trop élevée. Conséquence : visioconférences dégradées et perte de crédibilité face aux clients.</span></p>
+      </div>
+      <div class="diag-card">
+        <div class="diag-flag"><span class="mark">03</span><span data-i18n="s3.row3.p">Aucune visibilité sur ce qui transite sur le réseau</span></div>
+        <p class="diag-impact"><span class="k" data-i18n="s3.head.impact">Impact métier</span><span data-i18n="s3.row3.i">Absence de supervision. Vous découvrez les incidents quand ils sont déjà critiques. Risque de conformité et exposition aux menaces internes.</span></p>
+      </div>
+      <div class="diag-card">
+        <div class="diag-flag"><span class="mark">04</span><span data-i18n="s3.row4.p">Tous les équipements sont sur le même réseau</span></div>
+        <p class="diag-impact"><span class="k" data-i18n="s3.head.impact">Impact métier</span><span data-i18n="s3.row4.i">Aucune segmentation. Une compromission sur un poste utilisateur peut atteindre vos serveurs critiques en quelques minutes.</span></p>
+      </div>
+      <div class="diag-card">
+        <div class="diag-flag"><span class="mark">05</span><span data-i18n="s3.row5.p">Le câblage n'est pas documenté</span></div>
+        <p class="diag-impact"><span class="k" data-i18n="s3.head.impact">Impact métier</span><span data-i18n="s3.row5.i">Toute évolution devient un projet d'archéologie. Les délais d'intervention s'allongent et les coûts explosent à chaque déménagement ou ajout.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SECTION — Ce que nous traitons (rail horizontal) ============================== -->
+<section class="section-pad" id="s1" style="background:var(--surface); border-block:1px solid var(--border);">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <h2 class="section-title" data-i18n="s1.title" data-i18n-gold-last>Ce que nous traitons</h2>
+      <p class="section-sub" data-i18n="s1.sub">Notre périmètre couvre l'ensemble de la couche réseau d'une entreprise multi-sites :</p>
+    </div>
+
+    <div class="scope-rail reveal-stagger">
+      <div class="scope-card scope-card--lan">
+        <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
+        <h3 data-i18n="s1.lan.title">Réseaux locaux (LAN)</h3>
+        <p data-i18n="s1.lan.desc">Architecture, segmentation VLAN, switching cœur et accès, QoS pour applications critiques (ERP, VoIP, vidéo).</p>
+      </div>
+      <div class="scope-card scope-card--wifi">
+        <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path></svg></div>
+        <h3 data-i18n="s1.wifi.title">Réseaux sans fil (Wi-Fi)</h3>
+        <p data-i18n="s1.wifi.desc">Wi-Fi 6/6E haute densité, contrôleurs centralisés, portails captifs, segmentation invités/collaborateurs/IoT.</p>
+      </div>
+      <div class="scope-card scope-card--wan">
+        <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7h-9"></path><path d="M14 17H5"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg></div>
+        <h3 data-i18n="s1.wan.title">Interconnexion multi-sites (WAN)</h3>
+        <p data-i18n="s1.wan.desc">VPN site-à-site, SD-WAN, redondance de liens, accès distants sécurisés pour la mobilité.</p>
+      </div>
+      <div class="scope-card scope-card--cabling">
+        <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path><path d="M2 12h20"></path></svg></div>
+        <h3 data-i18n="s1.cabling.title">Câblage structuré</h3>
+        <p data-i18n="s1.cabling.desc">Cuivre catégorie 6/6A, fibre optique mono et multimode, prises RJ45, certification de chaîne, dossier de récolement.</p>
+      </div>
+      <div class="scope-card scope-card--building wide">
+        <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"></path><path d="M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7H3"></path><path d="M19 21v-7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v7"></path></svg></div>
+        <h3 data-i18n="s1.building.title">Bâtiments neufs et rénovation</h3>
+        <p data-i18n="s1.building.desc">Coordination avec les corps d'état, intervention en site occupé, planification par phases pour préserver la continuité d'activité.</p>
+      </div>
+    </div>
+    <div class="scope-rail-hint">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      <span data-i18n="misc.scrollhint">Faites glisser pour explorer</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SECTION — Engagements (zigzag) ============================== -->
+<section class="section-pad" id="s2">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <div class="node-eyebrow" data-i18n="s2.eyebrow">Expertise &amp; Qualité</div>
+      <h2 class="section-title" data-i18n="s2.title" data-i18n-gold-last>Nos trois engagements techniques</h2>
+      <p class="section-sub" data-i18n="s2.sub">Nous ne nous contentons pas d'installer du matériel ; nous bâtissons une infrastructure résiliente.</p>
+    </div>
+
+    <div class="zigzag reveal">
+      <div class="zigzag-row">
+        <div class="zigzag-num">01</div>
+        <div class="zigzag-body">
+          <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></div>
+          <h3 data-i18n="s2.perf.title">Performance tenue</h3>
+          <p data-i18n="s2.perf.desc">Disponibilité élevée pour vos applications critiques (ERP, CRM, VoIP, visio). Architecture redondée sur les couches cœur. Wi-Fi dimensionné pour la charge réelle.</p>
+        </div>
+        <div class="zigzag-media"><img src="image/4.webp" alt="Performance réseau tenue - baie de brassage" loading="lazy"></div>
+      </div>
+      <div class="zigzag-row rev">
+        <div class="zigzag-num">02</div>
+        <div class="zigzag-body">
+          <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg></div>
+          <h3 data-i18n="s2.sec.title">Sécurité native</h3>
+          <p data-i18n="s2.sec.desc">Segmentation systématique entre zones (utilisateurs, serveurs, invités, IoT). Contrôle d'accès au réseau (NAC) en option. Journalisation centralisée.</p>
+        </div>
+        <div class="zigzag-media"><img src="image/5.webp" alt="Sécurité réseau native - supervision et monitoring" loading="lazy"></div>
+      </div>
+      <div class="zigzag-row">
+        <div class="zigzag-num">03</div>
+        <div class="zigzag-body">
+          <div class="node-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg></div>
+          <h3 data-i18n="s2.scale.title">Évolutivité maîtrisée</h3>
+          <p data-i18n="s2.scale.desc">Architecture pensée pour absorber 50 à 100 % de croissance sans refonte. Documentation complète permettant à un autre intégrateur de reprendre la main.</p>
+        </div>
+        <div class="zigzag-media"><img src="image/6.webp" alt="Évolutivité de l'infrastructure réseau" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SECTION — Méthodologie (timeline verticale) ============================== -->
+<section class="section-pad" id="s4" style="background:var(--surface); border-block:1px solid var(--border);">
+  <div class="wrap" style="max-width:880px;">
+    <div class="head-row reveal">
+      <div class="node-eyebrow" data-i18n="s4.eyebrow">Notre Approche</div>
+      <h2 class="section-title" data-i18n="s4.title" data-i18n-gold-last>Notre méthodologie</h2>
+      <p class="section-sub" data-i18n="s4.sub">Un déploiement rigoureux en 4 étapes pour une infrastructure sans faille.</p>
+    </div>
+
+    <div class="method-vertical reveal">
+      <div class="method-row">
+        <div class="method-marker-col"><div class="method-dot">01</div><div class="method-line"></div></div>
+        <div class="method-body">
+          <span class="phase-tag" data-i18n="s4.p1.title">Phase 1 — Audit &amp; Architecture</span>
+          <p data-i18n="s4.p1.desc">Relevé physique, analyse des flux et entretiens métiers. Livrable : un dossier d'architecture cible documenté avec scénarios chiffrés pour un arbitrage informé.</p>
+        </div>
+      </div>
+      <div class="method-row">
+        <div class="method-marker-col"><div class="method-dot">02</div><div class="method-line"></div></div>
+        <div class="method-body">
+          <span class="phase-tag" data-i18n="s4.p2.title">Phase 2 — Déploiement Normé</span>
+          <p data-i18n="s4.p2.desc">Câblage certifié, configurations standardisées et recettes formelles. Vous recevez un dossier technique complet (DTR) documentant l'installation durablement.</p>
+        </div>
+      </div>
+      <div class="method-row">
+        <div class="method-marker-col"><div class="method-dot">03</div><div class="method-line"></div></div>
+        <div class="method-body">
+          <span class="phase-tag" data-i18n="s4.p3.title">Phase 3 — Mise en service</span>
+          <p data-i18n="s4.p3.desc">Bascule planifiée hors heures critiques, tests de charge réels et formation de vos équipes IT. Remise de la documentation d'exploitation finale.</p>
+        </div>
+      </div>
+      <div class="method-row">
+        <div class="method-marker-col"><div class="method-dot">04</div><div class="method-line"></div></div>
+        <div class="method-body">
+          <span class="phase-tag" data-i18n="s4.p4.title">Phase 4 — Maintenance Proactive</span>
+          <p data-i18n="s4.p4.desc">Supervision temps réel, alertes anticipées et intervention sous SLA contractuels. Vos incidents sont anticipés par nos experts réseau.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== SECTION — Réalisations (galerie horizontale) ============================== -->
+<section class="section-pad" id="s5">
+  <div class="wrap">
+    <div class="head-row reveal">
+      <div class="node-eyebrow" data-i18n="s5.eyebrow">Études de Cas</div>
+      <h2 class="section-title" data-i18n="s5.title" data-i18n-gold-last>Réalisations représentatives</h2>
+      <p class="section-sub" data-i18n="s5.sub">Découvrez comment nous avons transformé l'infrastructure de nos partenaires au Maroc.</p>
+    </div>
+
+    <div class="cases-scroll reveal">
+      <div class="case-card-lg">
+        <img class="case-photo" src="image/1.webp" alt="Industrie pharmaceutique - infrastructure réseau sécurisée" loading="lazy">
+        <span class="node-tag" data-i18n="s5.c1.tag">Industrie</span>
+        <h3 data-i18n="s5.c1.title">Industrie pharmaceutique</h3>
+        <p data-i18n="s5.c1.desc">Interconnexion sécurisée multi-sites (Production, Logistique, Siège) avec redondance critique et segmentation des flux industriels.</p>
+        <div class="case-foot"><span data-i18n="s5.c1.b1">✓ Continuité 100%</span><span data-i18n="s5.c1.b2">99.99% Uptime</span></div>
+      </div>
+      <div class="case-card-lg">
+        <img class="case-photo" src="image/2.webp" alt="Réseau multi-points de vente - Wi-Fi 6 managé en cloud" loading="lazy">
+        <span class="node-tag" data-i18n="s5.c2.tag">Retail</span>
+        <h3 data-i18n="s5.c2.title">Réseau multi-points de vente</h3>
+        <p data-i18n="s5.c2.desc">Déploiement d'un Wi-Fi 6 managé en cloud sur 40+ points de vente avec portails captifs et segmentation IoT/Caisse/Clients.</p>
+        <div class="case-foot"><span data-i18n="s5.c2.b1">✓ Wi-Fi centralisé</span><span data-i18n="s5.c2.b2">Gestion Cloud</span></div>
+      </div>
+      <div class="case-card-lg">
+        <img class="case-photo" src="image/3.webp" alt="Enseignement supérieur - Wi-Fi haute densité" loading="lazy">
+        <span class="node-tag" data-i18n="s5.c3.tag">Éducation</span>
+        <h3 data-i18n="s5.c3.title">Enseignement Supérieur</h3>
+        <p data-i18n="s5.c3.desc">Infrastructure Wi-Fi haute densité pour 2000+ étudiants simultanés. QoS optimisée pour les flux vidéo et applications cloud.</p>
+        <div class="case-foot"><span data-i18n="s5.c3.b1">✓ Haute densité</span><span data-i18n="s5.c3.b2">Zéro latence</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FAQ — deux colonnes ============================== -->
+<section class="section-pad" id="faq" style="background:var(--surface); border-block:1px solid var(--border);">
+  <div class="wrap">
+    <div class="text-center head-row reveal">
+      <div class="node-eyebrow" style="justify-content:center" data-i18n="faq.eyebrow">Questions Fréquentes</div>
+      <h2 class="section-title" data-i18n="faq.title" data-i18n-gold-last>Vos questions sur l'Infrastructure Réseau</h2>
+    </div>
+
+    <div class="faq-columns reveal">
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFAQ(this)" type="button">
+          <span data-i18n="faq.q1">Combien coûte une refonte d'infrastructure réseau ?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-content"><p data-i18n="faq.a1">Une refonte d'infrastructure se chiffre en fonction du périmètre (nombre de sites, d'utilisateurs, niveau de redondance). Un audit préalable nous permet de produire un chiffrage précis. À titre indicatif, pour une PME (50 à 100 collaborateurs), un projet complet (LAN + Wi-Fi + câblage) se situe entre 250 000 et 600 000 MAD selon les options et l'architecture retenue.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFAQ(this)" type="button">
+          <span data-i18n="faq.q2">Quel est le ROI d'un investissement réseau ?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-content"><p data-i18n="faq.a2">Le Retour Sur Investissement (ROI) se calcule sur trois axes majeurs : la productivité récupérée (les pannes ou lenteurs coûtent extrêmement cher), les coûts d'incidents évités, et la scalabilité (déployer une nouvelle application ou un nouveau poste devient instantané). L'audit GTEL permet de modéliser avec précision ces gains.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFAQ(this)" type="button">
+          <span data-i18n="faq.q3">Travaillez-vous avec des marques imposées par notre groupe ?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-content"><p data-i18n="faq.a3">Totalement. Notre indépendance constructeur (multi-vendors) nous permet de nous adapter à votre charte technologique. Si votre maison mère impose Cisco, Fortinet, ou Aruba, nous intégrons directement ces technologies selon vos politiques. Sinon, nous vous proposons la solution ayant le meilleur ratio Qualité/Prix.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFAQ(this)" type="button">
+          <span data-i18n="faq.q4">Que se passe-t-il après le déploiement ?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-content"><p data-i18n="faq.a4">C'est vous qui décidez de la suite. Soit vous reprenez l'exploitation en interne (nous effectuons un transfert de compétences avec une documentation exhaustive), soit nous prenons en charge la supervision et la maintenance continue via nos contrats de Services Managés (SLA).</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== CTA BAND ============================== -->
+<section class="cta-band section-pad" style="padding-block:70px;">
+  <div class="wrap cta-inner">
+    <div>
+      <h2 data-i18n="cta.title">Demandez une première analyse gratuite</h2>
+      <p data-i18n="cta.desc">Auditer mon infrastructure réseau avec un ingénieur GTEL pour identifier les améliorations structurelles et garantir la fiabilité de vos services.</p>
+    </div>
+    <button class="btn-gold" onclick="openQuoteModal('Infrastructure Réseau')" type="button">
+      <span data-i18n="cta.btn">Auditer mon infrastructure réseau</span>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer>
+  <div class="wrap foot-grid">
+    <div>
+      <a href="../index.html" class="foot-logo">
+        <img src="https://gtelstore.ma/wp-content/uploads/2024/10/GTEL-STORE-BLANC.png" alt="Logo GTEL">
+      </a>
+      <p class="foot-desc" data-i18n="footer.desc">Expert marocain en solutions réseaux, cyber-intelligence et infrastructures de télécommunications intégrées à Casablanca et sur tout le royaume.</p>
+      <div class="social-row">
+        <a href="https://web.facebook.com/GtelecomTech?_rdc=1&_rdr#" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        <a href="https://ma.linkedin.com/company/gtelstore" target="_blank" rel="noopener" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        <a href="https://www.instagram.com/gtelstore/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+        <a href="https://www.tiktok.com/@gtelstore" target="_blank" rel="noopener" class="social-btn" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5v4a9 9 0 1 1-9-9z"></path></svg></a>
+        <a href="https://www.youtube.com/channel/UCglE90LPV-4MBtI3njcxhLA" target="_blank" rel="noopener" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+        <a href="https://web.whatsapp.com/send?phone=+212%20666-287341" target="_blank" rel="noopener" class="social-btn" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="foot-h" data-i18n="footer.nav.title">Navigation</h4>
+      <ul class="foot-list">
+        <li><a href="index.html" data-i18n="footer.nav.home">Accueil</a></li>
+        <li><a href="index.html#solutions" data-i18n="footer.nav.solutions">Nos Solutions</a></li>
+        <li><a href="#" onclick="openQuoteModal('Devis Footer')" data-i18n="footer.nav.diag">Demander un diagnostic</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="foot-h" data-i18n="footer.contact.title">Informations de contact</h4>
+      <ul class="foot-list foot-contact">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span>241, Boulevard Emile Zola, 5ème étage Bureau 10, 20082 Casablanca</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span>+212-666287341</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>pro@gtelstore.ma</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="foot-h" data-i18n="footer.lang.title">Langues</h4>
+      <div class="lang-pill-row">
+        <button class="lang-pill" data-lang-opt="fr" onclick="changeLanguage('fr')" type="button">FR</button>
+        <button class="lang-pill" data-lang-opt="ar" onclick="changeLanguage('ar')" type="button">AR</button>
+        <button class="lang-pill" data-lang-opt="en" onclick="changeLanguage('en')" type="button">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap foot-bottom">
+    <div data-i18n="footer.copy">© 2025 GTEL. Tous droits réservés. Intégré avec expertise au Maroc.</div>
+    <div class="legal-links">
+      <a href="#" data-i18n="footer.legal1">Mentions Légales</a>
+      <a href="#" data-i18n="footer.legal2">Politique de Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================== MODAL ============================== -->
+<div class="modal-overlay" id="quote-modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeQuoteModal()" type="button" aria-label="Fermer">&times;</button>
+    <div class="inner">
+      <div class="modal-tag" data-i18n="modal.tag">Demande d'étude &amp; contact</div>
+      <h3 data-i18n="modal.title">Demande de Devis</h3>
+      <p data-i18n="modal.desc">Demandez l'intervention d'un ingénieur GTEL. Traitement sous 24h.</p>
+
+      <form id="gtel-quote-form" onsubmit="handleQuoteSubmit(event)">
+        <div class="form-row two">
+          <div class="field">
+            <label data-i18n="modal.name">Nom / Entreprise *</label>
+            <input type="text" id="quote-name" required>
+          </div>
+          <div class="field">
+            <label data-i18n="modal.phone">Téléphone *</label>
+            <input type="tel" id="quote-phone" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-i18n="modal.email">Email *</label>
+            <input type="email" id="quote-email" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="field">
+            <label data-i18n="modal.service">Solution ciblée</label>
+            <select id="quote-service">
+              <option value="Infrastructure Réseau">Infrastructure Réseau</option>
+              <option value="Datacenter">Datacenter / Serveurs</option>
+              <option value="Cybersécurité">Cybersécurité</option>
+              <option value="Vidéosurveillance">Vidéosurveillance</option>
+              <option value="Contrôle d'Accès">Contrôle d'Accès</option>
+              <option value="Téléphonie IP">Téléphonie IP</option>
+              <option value="Salles de Réunion">Salles de Réunion</option>
+              <option value="Sonorisation">Sonorisation</option>
+              <option value="Services Managés">Services Managés</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn"><span data-i18n="modal.submit">Envoyer</span></button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== TOAST ============================== -->
+<div class="toast" id="success-toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+  <div class="msg" id="toast-msg" data-i18n="toast.msg">Demande Envoyée !</div>
+</div>
+
+<script src="translations_IR.js"></script>
+<script src="script_IR.js"></script>
+
+<script src="shared-nav.js?v=6"></script>
+</body>
+</html>

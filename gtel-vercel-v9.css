@@ -1,0 +1,87 @@
+/* GTEL v9 Vercel — noir/blanc minimal, style vercel.com */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+:root{--v-bg:#fff;--v-ink:#000;--v-gray:#666;--v-light:#999;--v-line:#EAEAEA;--v-soft:#FAFAFA;--v-d:'Inter',sans-serif;--v-m:'JetBrains Mono',monospace}
+body{font-family:var(--v-d)!important;background:#fff!important;color:#000!important;letter-spacing:-.011em!important}
+body::before,body::after{display:none!important}
+h1,h2,h3{font-family:var(--v-d)!important;font-weight:800!important;letter-spacing:-.05em!important;line-height:1!important}
+h1{font-size:clamp(3rem,8vw,6rem)!important}
+h2{font-size:clamp(2rem,5vw,3.5rem)!important}
+h1 .grad, h2 .grad{background:linear-gradient(180deg,#000,#555)!important;-webkit-background-clip:text!important;background-clip:text!important}
+p{color:var(--v-gray)!important;font-size:1.05rem!important;line-height:1.7!important}
+::selection{background:#000!important;color:#fff!important}
+
+/* topbar -> status bar vercel */
+.gtel-topbar{display:flex!important;height:34px!important;background:#000!important;color:#fff!important;border:none!important;font-family:var(--v-m)!important;font-size:11px!important}
+.gtel-topbar a,.gtel-topbar span{color:rgba(255,255,255,.7)!important}
+.gtel-topbar .dot{width:7px;height:7px;border-radius:99px;background:#0CCE6B;display:inline-block;margin-right:6px}
+#mouse-glow,#dust-canvas,.gtel-section-nav{display:none!important}
+
+/* navbar vercel */
+.gtel-navbar{top:44px!important;width:100%!important;max-width:100%!important;border-radius:0!important;background:rgba(255,255,255,.8)!important;backdrop-filter:blur(12px)!important;border:none!important;border-bottom:1px solid var(--v-line)!important;box-shadow:none!important}
+.gtel-navbar::after{display:none!important}
+.gtel-navbar-inner{max-width:1200px!important;margin:0 auto!important;height:60px!important}
+.gtel-navbar-logo img{height:28px!important;background:none!important;box-shadow:none!important;padding:0!important}
+.gtel-navbar-nav{background:none!important;padding:0!important;gap:4px!important}
+.gtel-nav-link,.gtel-solutions-trigger{color:var(--v-gray)!important;font-size:14px!important;font-weight:500!important;padding:8px 12px!important;border-radius:6px!important}
+.gtel-nav-link:hover{background:var(--v-soft)!important;color:#000!important}
+.gtel-nav-link.active{background:var(--v-soft)!important;color:#000!important}
+.gtel-solutions-panel{border-radius:12px!important;border:1px solid var(--v-line)!important;box-shadow:0 20px 50px -12px rgba(0,0,0,.2)!important}
+.gtel-solutions-panel a{border-radius:8px!important}
+.gtel-solutions-panel a:hover{background:var(--v-soft)!important;color:#000!important;transform:none!important}
+.gtel-nav-cta{background:#000!important;color:#fff!important;border-radius:6px!important;padding:8px 18px!important;font-size:14px!important;font-weight:500!important}
+.gtel-nav-cta:hover{background:#333!important;transform:none!important}
+.gtel-lang-btn,.gtel-theme-toggle{border-radius:6px!important;background:#fff!important;border:1px solid var(--v-line)!important;color:#000!important}
+.gtel-hamburger span{background:#000!important}
+
+/* hero vercel : grille + glow */
+section.hero,section[class*="hero"],.hero,#hero,.hero-section,.page-hero{background:#fff!important;background-image:linear-gradient(to right,#F0F0F0 1px,transparent 1px),linear-gradient(to bottom,#F0F0F0 1px,transparent 1px)!important;background-size:60px 60px!important;border-bottom:1px solid var(--v-line)!important;border-radius:0!important;text-align:center!important;padding-top:clamp(170px,20vw,210px)!important;position:relative!important}
+section.hero::before{content:''!important;position:absolute!important;left:50%!important;top:0!important;transform:translateX(-50%)!important;width:800px!important;height:400px!important;background:radial-gradient(closest-side,rgba(0,0,0,.08),transparent)!important;display:block!important}
+section.hero::after{display:none!important}
+section.hero h1{color:#000!important;background:none!important;-webkit-text-fill-color:#000!important;animation:none!important}
+.hero-badge,.hero-badge2,.blueprint-index,.node-eyebrow,.eyebrow,[class*="badge-"],.chip{background:#000!important;color:#fff!important;border:none!important;border-radius:99px!important;font-family:var(--v-m)!important;font-size:12px!important;box-shadow:none!important}
+.hero-badge::before{display:none!important}
+.breadcrumb{top:94px!important;background:rgba(255,255,255,.8)!important;border-bottom:1px solid var(--v-line)!important;font-family:var(--v-m)!important}
+
+/* boutons vercel */
+.btn-primary-lg,.btn-accent,.submit-btn,.gtel-cta-primary{background:#000!important;color:#fff!important;border-radius:6px!important;padding:12px 24px!important;font-size:14px!important;font-weight:500!important;box-shadow:none!important;border:1px solid #000!important}
+.btn-primary-lg::after{display:none!important}
+.btn-primary-lg:hover{background:#333!important;transform:none!important;box-shadow:none!important}
+.btn-outline,.gtel-cta-ghost{background:#fff!important;border:1px solid var(--v-line)!important;color:#000!important;border-radius:6px!important}
+.btn-outline:hover{background:var(--v-soft)!important;color:#000!important;transform:none!important}
+
+/* cartes vercel */
+.glass,[class*="card"]:not(.glass-dark){background:#fff!important;border:1px solid var(--v-line)!important;border-radius:8px!important;box-shadow:0 4px 12px rgba(0,0,0,.05)!important}
+.glass:hover{border-color:#000!important;transform:none!important;box-shadow:0 8px 24px rgba(0,0,0,.08)!important}
+.glass::before{display:none!important}
+.node-icon{background:#000!important;color:#fff!important;border-radius:6px!important;box-shadow:none!important}
+.section-title::after{display:none!important}
+
+/* CTA noir vercel + footer */
+.gtel-cta-card{background:#000!important;border-radius:12px!important;padding:48px!important;border:1px solid #333!important;position:relative!important;overflow:hidden!important}
+.gtel-cta-card::before{content:''!important;position:absolute!important;width:600px!important;height:300px!important;left:50%!important;top:-150px!important;transform:translateX(-50%)!important;background:radial-gradient(closest-side,rgba(255,255,255,.15),transparent)!important;display:block!important}
+.gtel-cta-card h3{color:#fff!important}.gtel-cta-card h3 em{color:#fff!important;font-style:normal!important}
+.gtel-cta-card p{color:#999!important}
+.gtel-cta-card .gtel-cta-primary{background:#fff!important;color:#000!important}
+.gtel-footer{background:#FAFAFA!important;border-top:1px solid var(--v-line)!important;border-radius:0!important;color:var(--v-gray)!important}
+.gtel-footer h4{color:#000!important;font-size:13px!important;font-weight:600!important;font-family:var(--v-d)!important}
+.gtel-footer h4::after{display:none!important}
+.gtel-footer-social a{background:#fff!important;border:1px solid var(--v-line)!important;border-radius:6px!important}
+.gtel-footer-social a:hover{background:#000!important;transform:none!important}
+.gtel-progress{background:#000!important;height:2px!important}
+.gtel-dock{background:#000!important;border-radius:99px!important;border:none!important}
+.gtel-dock a{color:#999!important}.gtel-dock a.on{background:#fff!important;color:#000!important}
+.gtel-page-bridge{display:none!important}
+
+/* transition vercel : fade rapide */
+#gtel-transition .gtel-t-panel{background:#000!important;transition:opacity .3s!important;transform:none!important;opacity:0}
+#gtel-transition.gtel-t-active .gtel-t-panel{transform:none!important;opacity:1}
+#gtel-transition .gtel-t-panel.gtel-t-gold{display:none!important}
+.gtel-t-logo{color:#fff!important;font-family:var(--v-m)!important;font-size:12px!important;letter-spacing:.2em!important}
+.gtel-t-logo em{display:none}.gtel-t-bar{background:#333!important}.gtel-t-bar i{background:#fff!important}
+.gtel-t-name{color:#fff!important;font-family:var(--v-d)!important;font-weight:700!important}
+body.gtel-page-out{opacity:0;transition:opacity .2s}
+body.gtel-page-enter{animation:vin .4s ease}
+@keyframes vin{from{opacity:0}to{opacity:1}}
+.u-reveal{opacity:0;transform:translateY(12px);transition:opacity .5s,transform .5s}
+.u-reveal.u-on{opacity:1;transform:none}
+@media(max-width:899px){.gtel-navbar{top:34px!important}.gtel-dock{display:none!important}}

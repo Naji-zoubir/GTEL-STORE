@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTEL | Téléphonie IP & Communications Unifiées</title>
+<meta name="description" content="Solutions de téléphonie IP et communications unifiées : IPBX, VoIP, intégration CRM, migration sans coupure. Audit gratuit et installation professionnelle pour entreprises au Maroc.">
+
+<!-- Anti-flash theme (applies saved theme before first paint) -->
+<script>
+  (function(){
+    try{
+      var t = localStorage.getItem('gtel-theme');
+      if(!t){ t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'; }
+      document.documentElement.setAttribute('data-theme', t);
+    }catch(e){}
+  })();
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Nunito:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="gtel-telephonie-style.css">
+
+<script>document.documentElement.classList.add("gtel-shell-pending");</script>
+<link rel="stylesheet" href="shared-components.css?v=3">
+<link rel="stylesheet" href="gtel-unified-v5.css?v=6">
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="top-bar" id="top-bar">
+  <div class="wrap nav-pill">
+    <a href="index.html">
+      <img src="image/image.webp" alt="Logo GTEL" class="brand-logo">
+    </a>
+
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link" data-i18n="nav.home">Accueil</a>
+      <div class="nav-drop">
+        <a href="index.html#solutions" class="nav-link active" data-i18n="nav.solutions">Solutions</a>
+        <div class="nav-drop-panel">
+          <a href="InfraDigitale.html" data-i18n="menu.infra">Infrastructure Digitale</a>
+          <a href="infrastructure-reseau.html" data-i18n="menu.network">Infrastructure Réseau</a>
+          <a href="datacenter.html" data-i18n="menu.datacenter">Datacenter</a>
+          <a href="cybersecurite.html" data-i18n="menu.cyber">Cybersécurité</a>
+          <a href="videosurveillance.html" data-i18n="menu.video">Vidéosurveillance</a>
+          <a href="controle-acces.html" data-i18n="menu.access">Contrôle d'Accès</a>
+          <a href="telephonie-ip.html" class="current" data-i18n="menu.telephony">Téléphonie IP</a>
+          <a href="salles-reunion.html" data-i18n="menu.meeting">Salles de Réunion</a>
+          <a href="sonorisation.html" data-i18n="menu.sound">Sonorisation</a>
+          <a href="services-manages.html" data-i18n="menu.managed">Services Managés</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-actions">
+      <div class="lang-switcher">
+        <button class="lang-current" id="lang-current-btn">
+          <span class="lang-flag">🇫🇷</span><span class="lang-code">FR</span>
+        </button>
+        <div class="lang-panel">
+          <button class="lang-opt active" data-lang="fr" onclick="changeLanguage('fr')">🇫🇷 Français</button>
+          <button class="lang-opt" data-lang="ar" onclick="changeLanguage('ar')">🇲🇦 العربية</button>
+          <button class="lang-opt" data-lang="en" onclick="changeLanguage('en')">🇬🇧 English</button>
+        </div>
+      </div>
+
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">
+        <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+        <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"></path></svg>
+      </button>
+
+      <button class="btn-cta" onclick="openQuoteModal('Téléphonie IP')" data-i18n="nav.contact">Nous Contacter</button>
+
+      <button class="burger" id="burger-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MOBILE PANEL ============ -->
+<div class="mobile-panel" id="mobile-panel">
+  <a href="index.html" data-i18n="nav.home">Accueil</a>
+  <a href="index.html#solutions" data-i18n="nav.solutions">Solutions</a>
+  <a href="telephonie-ip.html" data-i18n="menu.telephony">Téléphonie IP</a>
+  <a href="catalogue.html" data-i18n="nav.catalogue">Catalogue</a>
+  <a href="#" onclick="openQuoteModal('Téléphonie IP'); return false;" data-i18n="nav.contact">Nous Contacter</a>
+  <div style="display:flex; gap:10px; margin-top:24px;">
+    <button class="lang-opt" data-lang="fr" onclick="changeLanguage('fr')" style="border:1px solid var(--border); border-radius:10px;">FR</button>
+    <button class="lang-opt" data-lang="ar" onclick="changeLanguage('ar')" style="border:1px solid var(--border); border-radius:10px;">AR</button>
+    <button class="lang-opt" data-lang="en" onclick="changeLanguage('en')" style="border:1px solid var(--border); border-radius:10px;">EN</button>
+  </div>
+</div>
+
+<!-- ============ BREADCRUMB ============ -->
+<nav class="crumb-bar">
+  <div class="wrap crumb-row">
+    <div style="display:flex; align-items:center; gap:10px;">
+      <a href="index.html" data-i18n="breadcrumb.home">Accueil</a>
+      <span class="sep">/</span>
+      <a href="index.html#solutions" data-i18n="breadcrumb.solutions">Nos Solutions</a>
+      <span class="sep">/</span>
+      <span class="now" data-i18n="breadcrumb.current">Téléphonie IP</span>
+    </div>
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+      <span data-i18n="nav.back">Retour à l'accueil</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <!-- AI-IMAGE data-ai-id="hero-banner" — prompt complet dans gtel-ai-image-prompts.md
+       Emplacement backend prêt à recevoir l'image générée par IA (remplacer src par le fichier final). -->
+  <div class="hero-bg ai-photo" data-ai-id="hero-banner" aria-hidden="true">
+    <img src="image/hero-banner.webp" alt="Système de téléphonie IP moderne avec IPBX et communications unifiées" loading="eager" onerror="this.remove()">
+  </div>
+
+  <div class="wrap hero-grid">
+    <span class="hero-badge"><span class="dot"></span> <span data-i18n="hero.badge">Communication & Collaboration</span></span>
+    <h1 class="hero-title" data-i18n="hero.title">Votre téléphonie d'entreprise mérite mieux qu'un central qui date de <span class="accent">2008</span>.</h1>
+    <p class="hero-desc" data-i18n="hero.desc">Téléphonie IP, IPBX, communications unifiées (voix, messagerie, présence, mobilité). Un système moderne qui suit vos collaborateurs partout, s'intègre à votre CRM et coûte moins cher que ce que vous payez aujourd'hui.</p>
+    <div class="hero-actions">
+      <button class="btn-primary-lg" onclick="openQuoteModal('Téléphonie IP')">
+        <span data-i18n="hero.cta">Auditer ma téléphonie</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </button>
+    </div>
+    <div class="hero-chips">
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"></rect><line x1="12" y1="18" x2="12.01" y2="18"></line></svg> <span data-i18n="hero.chip1">Mobilité totale</span></span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg> <span data-i18n="hero.chip2">-40% de coûts</span></span>
+      <span class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M8 21h8M12 17v4"></path></svg> <span data-i18n="hero.chip3">CRM intégré</span></span>
+    </div>
+    <div class="hero-eq" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="scroll-cue"><span data-i18n="hero.scroll">Découvrir</span><span class="line"></span></div>
+</section>
+
+<!-- ============ JOURNEY (sections 1-4 threaded by the spine) ============ -->
+<div class="journey">
+  <div class="spine"></div>
+
+  <!-- SECTION 1 : ECOSYSTEME -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-marker reveal">
+        <span class="marker-dot"></span>
+        <span class="marker-label" data-i18n="s1.eyebrow">Périmètre technique</span>
+      </div>
+      <div class="section-head reveal">
+        <h2 class="section-title" data-i18n="s1.title">Écosystème téléphonique</h2>
+        <p class="section-desc" data-i18n="s1.desc">Une approche unifiée qui relie tous vos terminaux et applications métiers au cœur d'une même plateforme performante et scalable.</p>
+      </div>
+
+      <div class="eco-carousel">
+        <button class="carousel-arrow prev" id="eco-prev" aria-label="Précédent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"></path></svg>
+        </button>
+        <div class="eco-grid" id="eco-grid">
+        <div class="eco-card reveal">
+          <!-- AI-IMAGE data-ai-id="eco-ipbx" — voir gtel-ai-image-prompts.md -->
+          <div class="ai-photo" data-ai-id="eco-ipbx" aria-hidden="true"><img src="image/eco-ipbx.webp" alt="Système IPBX moderne pour téléphonie d'entreprise" loading="lazy" onerror="this.remove()"></div>
+          <div class="eco-body">
+            <div class="eco-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
+            <h3 data-i18n="s1.card1.title">IPBX & Radio INDOOR</h3>
+            <p data-i18n="s1.card1.p1"><strong>IPBX sur site ou en cloud :</strong> Choisi selon votre profil de risque, vos exigences de souveraineté des données et vos contraintes budgétaires.</p>
+            <p data-i18n="s1.card1.p2"><strong>Radio INDOOR :</strong> Solution de couverture radio optimisée pour maintenir une connectivité sans faille dans tous vos bâtiments.</p>
+          </div>
+        </div>
+
+        <div class="eco-card reveal">
+          <!-- AI-IMAGE data-ai-id="eco-terminaux" — voir gtel-ai-image-prompts.md -->
+          <div class="ai-photo" data-ai-id="eco-terminaux" aria-hidden="true"><img src="image/eco-terminaux.webp" alt="Terminaux téléphoniques IP professionnels" loading="lazy" onerror="this.remove()"></div>
+          <div class="eco-body">
+            <div class="eco-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2h-10a2 2 0 0 0 -2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-16a2 2 0 0 0 -2 -2z"></path><path d="M11 18h2M12 2v2"></path></svg></div>
+            <h3 data-i18n="s1.card2.title">Terminaux & Com. Unifiées</h3>
+            <p data-i18n="s1.card2.p1"><strong>Postes IP & softphones :</strong> Terminaux physiques (accueils/postes fixes) ou applications mobile/desktop pour les nomades.</p>
+            <p data-i18n="s1.card2.p2"><strong>Communications unifiées :</strong> Voix, chat d'équipe, gestion de la présence, partage d'écran et conférence dans une interface unique.</p>
+          </div>
+        </div>
+
+        <div class="eco-card reveal">
+          <!-- AI-IMAGE data-ai-id="eco-integration" — voir gtel-ai-image-prompts.md -->
+          <div class="ai-photo" data-ai-id="eco-integration" aria-hidden="true"><img src="image/eco-integration.webp" alt="Intégration téléphonie avec CRM et applications" loading="lazy" onerror="this.remove()"></div>
+          <div class="eco-body">
+            <div class="eco-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+            <h3 data-i18n="s1.card3.title">Intégration & SVI</h3>
+            <p data-i18n="s1.card3.p1"><strong>Intégration CRM & métier :</strong> Remontée de la fiche client à l'appel, journalisation automatique, click-to-call direct depuis vos apps.</p>
+            <p data-i18n="s1.card3.p2"><strong>Standard automatisé (SVI) :</strong> Accueil professionnel, routage intelligent, files d'attente et statistiques de centre d'appels intégrés.</p>
+          </div>
+        </div>
+        </div>
+        <button class="carousel-arrow next" id="eco-next" aria-label="Suivant">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+      </div>
+      <div class="eco-dots" id="eco-dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 2 : DIAGNOSTIC -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-marker reveal">
+        <span class="marker-dot"></span>
+        <span class="marker-label" data-i18n="s2.eyebrow">Diagnostic</span>
+      </div>
+      <div class="section-head reveal">
+        <h2 class="section-title" data-i18n="s2.title">Le vrai coût d'un central téléphonique obsolète</h2>
+        <p class="section-desc" data-i18n="s2.desc">Reconnaissez-vous l'une de ces situations ? Ce sont les signes qu'il est temps de moderniser votre système.</p>
+      </div>
+
+      <div class="diag-carousel">
+        <button class="carousel-arrow prev diag-prev" id="diag-prev" aria-label="Précédent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"></path></svg>
+        </button>
+        <div class="diag-list" id="diag-list">
+        <div class="diag-row reveal">
+          <div class="diag-symptom" data-i18n="s2.row1.symptom">Maintenance facturée chaque année malgré l'absence d'évolutions</div>
+          <div class="diag-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="diag-impact" data-i18n="s2.row1.impact">Vous payez pour maintenir en vie un système que personne ne sait plus faire évoluer. Le marché des cartes de remplacement se raréfie, les prix grimpent.</div>
+        </div>
+        <div class="diag-row reveal">
+          <div class="diag-symptom" data-i18n="s2.row2.symptom">Aucune intégration avec vos outils métier</div>
+          <div class="diag-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="diag-impact" data-i18n="s2.row2.impact">Vos commerciaux saisissent manuellement les appels dans le CRM. Perte de temps, oublis, données incomplètes. La force de vente travaille avec un handicap.</div>
+        </div>
+        <div class="diag-row reveal">
+          <div class="diag-symptom" data-i18n="s2.row3.symptom">Les collaborateurs en télétravail utilisent leur portable personnel</div>
+          <div class="diag-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="diag-impact" data-i18n="s2.row3.impact">Aucune traçabilité, aucune image professionnelle, aucun coût remboursé proprement. Le numéro perso devient le numéro pro — sans aucun cadrage.</div>
+        </div>
+        <div class="diag-row reveal">
+          <div class="diag-symptom" data-i18n="s2.row4.symptom">Le standard téléphonique n'a aucune statistique</div>
+          <div class="diag-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="diag-impact" data-i18n="s2.row4.impact">Combien d'appels manqués hier ? Quels sont les pics d'affluence ? Quel est le délai moyen de décrocher ? Aucune réponse, aucun pilotage possible.</div>
+        </div>
+        <div class="diag-row reveal">
+          <div class="diag-symptom" data-i18n="s2.row5.symptom">Une coupure du PABX = standard mort jusqu'à intervention</div>
+          <div class="diag-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></div>
+          <div class="diag-impact" data-i18n="s2.row5.impact">Pas de redondance, pas de bascule cloud. Vous êtes injoignable plusieurs heures pour une panne mineure.</div>
+        </div>
+        </div>
+        <button class="carousel-arrow next diag-next" id="diag-next" aria-label="Suivant">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+      </div>
+      <div class="diag-dots" id="diag-dots" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <!-- SECTION 3 : BENEFICES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-marker reveal">
+        <span class="marker-dot"></span>
+        <span class="marker-label" data-i18n="s3.eyebrow">Valeur ajoutée</span>
+      </div>
+      <div class="section-head reveal">
+        <h2 class="section-title" data-i18n="s3.title">Trois bénéfices concrets de la téléphonie moderne</h2>
+        <p class="section-desc" data-i18n="s3.desc">Découvrez comment le passage à la VoIP transforme fondamentalement vos processus internes et vos coûts.</p>
+      </div>
+
+      <div class="benefit-carousel">
+        <button class="carousel-arrow prev" id="benefit-prev" aria-label="Précédent">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"></path></svg>
+        </button>
+        <div class="benefit-grid">
+        <div class="benefit-card featured reveal-scale">
+          <!-- AI-IMAGE data-ai-id="benefit-mobilite" — voir gtel-ai-image-prompts.md -->
+          <div class="ai-photo" data-ai-id="benefit-mobilite" aria-hidden="true"><img src="image/benefit-mobilite.webp" alt="Mobilité et téléphonie mobile pour collaborateurs" loading="lazy" onerror="this.remove()"></div>
+          <span class="benefit-num">01 / MOBILITÉ</span>
+          <h3 data-i18n="s3.b1.title">Mobilité réelle</h3>
+          <p data-i18n="s3.b1.desc">Le même numéro sonne sur le poste fixe, le mobile et le PC. Vos collaborateurs sont joignables où qu'ils soient, avec un seul numéro professionnel. Le télétravail devient transparent.</p>
+        </div>
+        <div class="benefit-card featured reveal-scale">
+          <!-- AI-IMAGE data-ai-id="benefit-couts" -->
+          <div class="ai-photo" data-ai-id="benefit-couts" aria-hidden="true"><img src="image/benefit-couts.webp" alt="Réduction des coûts téléphoniques avec IPBX" loading="lazy" onerror="this.remove()"></div>
+          <span class="benefit-num">02 / COÛTS</span>
+          <h3 data-i18n="s3.b2.title">Coût total réduit</h3>
+          <p data-i18n="s3.b2.desc">Suppression des lignes analogiques, communications inter-sites gratuites en interne, abonnement opérateur SIP plus compétitif que les liens RTC. ROI typique observé : 18 à 24 mois.</p>
+        </div>
+        <div class="benefit-card featured reveal-scale">
+          <!-- AI-IMAGE data-ai-id="benefit-pilotage" -->
+          <div class="ai-photo" data-ai-id="benefit-pilotage" aria-hidden="true"><img src="image/benefit-pilotage.webp" alt="Interface de pilotage et supervision téléphonique" loading="lazy" onerror="this.remove()"></div>
+          <span class="benefit-num">03 / PILOTAGE</span>
+          <h3 data-i18n="s3.b3.title">Données et pilotage</h3>
+          <p data-i18n="s3.b3.desc">Statistiques d'appels en temps réel, analyse des pics, mesure de la qualité du standard, alertes sur les dépassements. La téléphonie devient un véritable outil de pilotage.</p>
+        </div>
+        </div>
+        <button class="carousel-arrow next" id="benefit-next" aria-label="Suivant">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6"></path></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 : METHODOLOGIE -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-marker reveal">
+        <span class="marker-dot"></span>
+        <span class="marker-label" data-i18n="s4.eyebrow">Feuille de route</span>
+      </div>
+      <div class="section-head reveal">
+        <h2 class="section-title" data-i18n="s4.title">Méthodologie d'implémentation</h2>
+        <p class="section-desc" data-i18n="s4.desc">Une transition maîtrisée, sans interruption de service et guidée par les usages métiers réels de votre entreprise.</p>
+      </div>
+
+      <div class="timeline">
+        <div class="tl-item reveal">
+          <div class="tl-content">
+            <!-- AI-IMAGE data-ai-id="step-audit" — voir gtel-ai-image-prompts.md -->
+            <div class="ai-photo tl-thumb" data-ai-id="step-audit" aria-hidden="true"><img src="image/step-audit.webp" alt="Audit de l'infrastructure téléphonique existante" loading="lazy" onerror="this.remove()"></div>
+            <div class="tl-text"><h4 data-i18n="s4.step1.title">Audit téléphonique</h4><p data-i18n="s4.step1.desc">Inventaire des lignes, postes, fonctionnalités utilisées, volume d'appels et coûts actuels. Identification des cas d'usage prioritaires : centre d'appels, mobilité, intégration CRM.</p></div>
+          </div>
+          <div class="tl-node font-mono">01</div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-content">
+            <!-- AI-IMAGE data-ai-id="step-architecture" — voir gtel-ai-image-prompts.md -->
+            <div class="ai-photo tl-thumb" data-ai-id="step-architecture" aria-hidden="true"><img src="image/step-architecture.webp" alt="Conception de l'architecture téléphonique IP" loading="lazy" onerror="this.remove()"></div>
+            <div class="tl-text"><h4 data-i18n="s4.step2.title">Choix de l'architecture</h4><p data-i18n="s4.step2.desc">Sur site (IPBX hébergé chez vous) ou cloud (hébergé chez l'éditeur). Le sur-site offre le contrôle total, le cloud supprime la maintenance et offre une élasticité immédiate.</p></div>
+          </div>
+          <div class="tl-node font-mono">02</div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-content">
+            <!-- AI-IMAGE data-ai-id="step-migration" — voir gtel-ai-image-prompts.md -->
+            <div class="ai-photo tl-thumb" data-ai-id="step-migration" aria-hidden="true"><img src="image/step-migration.webp" alt="" loading="lazy" onerror="this.remove()"></div>
+            <div class="tl-text"><h4 data-i18n="s4.step3.title">Migration encadrée</h4><p data-i18n="s4.step3.desc">Bascule planifiée par phases (site ou service), portage de numéros sans interruption d'activité, et formation des utilisateurs aux nouveaux postes et softphones.</p></div>
+          </div>
+          <div class="tl-node font-mono">03</div>
+        </div>
+        <div class="tl-item reveal">
+          <div class="tl-content">
+            <!-- AI-IMAGE data-ai-id="step-optimisation" — voir gtel-ai-image-prompts.md -->
+            <div class="ai-photo tl-thumb" data-ai-id="step-optimisation" aria-hidden="true"><img src="image/step-optimisation.webp" alt="" loading="lazy" onerror="this.remove()"></div>
+            <div class="tl-text"><h4 data-i18n="s4.step4.title">Optimisation continue</h4><p data-i18n="s4.step4.desc">Revue trimestrielle des statistiques, ajustement du serveur vocal interactif (SVI) et optimisation des coûts opérateurs au fil de l'évolution de l'activité.</p></div>
+          </div>
+          <div class="tl-node font-mono">04</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- SECTION 5 : FAQ -->
+<section class="section" style="background:var(--bg-soft);">
+  <div class="wrap" style="max-width:940px;">
+    <div class="section-head reveal" style="text-align:center; margin-left:auto; margin-right:auto;">
+      <span class="marker-label" data-i18n="s5.eyebrow" style="display:block; margin-bottom:10px;">Questions des décideurs</span>
+      <h2 class="section-title" data-i18n="s5.title">FAQ Téléphonie IP</h2>
+    </div>
+
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFAQ(this)">
+          <span class="faq-index font-mono">01</span>
+          <span data-i18n="s5.faq1.q">Cloud ou sur site : que choisir ?</span>
+          <span class="faq-plus"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+        </button>
+        <div class="faq-body"><p data-i18n="s5.faq1.a">Le cloud convient à 70 % des PME marocaines : suppression de la maintenance, évolutivité immédiate, pas d'investissement initial. Le sur site se justifie pour les entreprises soumises à des contraintes de souveraineté (services régulés, secteur public) ou disposant déjà d'une infrastructure datacenter solide. L'audit tranche la question avec des chiffres.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFAQ(this)">
+          <span class="faq-index font-mono">02</span>
+          <span data-i18n="s5.faq2.q">Que devient le câblage téléphonique existant ?</span>
+          <span class="faq-plus"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+        </button>
+        <div class="faq-body"><p data-i18n="s5.faq2.a">Dans la majorité des cas, le câblage RJ45 informatique sert aussi pour les postes IP (un seul câble pour le réseau et la téléphonie). Si votre câblage cuivre téléphonique est récent, il peut être conservé pour des usages secondaires (interphones, fax). Sinon, il devient obsolète.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFAQ(this)">
+          <span class="faq-index font-mono">03</span>
+          <span data-i18n="s5.faq3.q">Pouvons-nous garder nos numéros ?</span>
+          <span class="faq-plus"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+        </button>
+        <div class="faq-body"><p data-i18n="s5.faq3.a">Oui, le portage de numéros est un droit. Nous gérons l'ensemble du processus avec votre opérateur actuel et le nouveau, en planifiant la bascule sans coupure perceptible. Le portage prend généralement 4 à 6 semaines selon les opérateurs au Maroc.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-q" aria-expanded="false" onclick="toggleFAQ(this)">
+          <span class="faq-index font-mono">04</span>
+          <span data-i18n="s5.faq4.q">Et la qualité de service ?</span>
+          <span class="faq-plus"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg></span>
+        </button>
+        <div class="faq-body"><p data-i18n="s5.faq4.a">La qualité de la voix sur IP dépend de votre lien Internet et de votre réseau local. Avant tout déploiement, nous mesurons la qualité de service (latence, gigue, perte de paquets) et nous priorisons le trafic voix sur le réseau (QoS). C'est cette préparation qui fait la différence entre une téléphonie IP excellente et une téléphonie qui frustre tout le monde.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <!-- AI-IMAGE data-ai-id="cta-band" — voir gtel-ai-image-prompts.md -->
+  <div class="ai-photo" data-ai-id="cta-band" aria-hidden="true"><img src="image/cta-band.webp" alt="" loading="lazy" onerror="this.remove()"></div>
+  <div class="wrap cta-inner">
+    <div>
+      <h2 data-i18n="cta.title">Récupérez jusqu'à 40 % de coûts télécoms</h2>
+      <p data-i18n="cta.desc">Demandez votre audit gratuit et découvrez précisément combien la migration vers la téléphonie moderne peut vous faire économiser.</p>
+    </div>
+    <button class="btn-primary-lg" onclick="openQuoteModal('Téléphonie IP')">
+      <span data-i18n="cta.button">Auditer ma téléphonie</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a href="index.html"><img src="https://gtelstore.ma/wp-content/uploads/2024/10/GTEL-STORE-BLANC.png" alt="Logo GTEL" class="footer-logo"></a>
+      <p data-i18n="footer.desc">Expert marocain en solutions réseaux, cyber-intelligence et infrastructures de télécommunications intégrées à Casablanca et sur tout le royaume.</p>
+      <div class="social-row">
+        <a href="https://web.facebook.com/GtelecomTech?_rdc=1&_rdr#" target="_blank" class="social-btn" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        <a href="https://ma.linkedin.com/company/gtelstore" target="_blank" class="social-btn" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        <a href="https://www.instagram.com/gtelstore/" target="_blank" class="social-btn" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+        <a href="https://www.tiktok.com/@gtelstore" target="_blank" class="social-btn" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5v4a9 9 0 1 1-9-9z"></path></svg></a>
+        <a href="https://www.youtube.com/channel/UCglE90LPV-4MBtI3njcxhLA" target="_blank" class="social-btn" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg></a>
+        <a href="https://web.whatsapp.com/send?phone=+212%20666-287341" target="_blank" class="social-btn" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg></a>
+      </div>
+    </div>
+
+    <div>
+      <h4 class="footer-h" data-i18n="footer.navTitle">Navigation</h4>
+      <ul class="footer-links">
+        <li><a href="index.html" data-i18n="footer.nav1">Accueil</a></li>
+        <li><a href="index.html#solutions" data-i18n="footer.nav2">Nos Solutions</a></li>
+        <li><a href="#" onclick="openQuoteModal('Devis Footer'); return false;" data-i18n="footer.nav3">Demander un diagnostic</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="footer-h" data-i18n="footer.contactTitle">Informations de contact</h4>
+      <ul class="contact-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span data-i18n="footer.address">241, Boulevard Emile Zola, 5ème étage Bureau 10, 20082 Casablanca</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg><span>+212-666287341</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg><span>pro@gtelstore.ma</span></li>
+      </ul>
+    </div>
+
+    <div>
+      <h4 class="footer-h" data-i18n="footer.langTitle">Langues</h4>
+      <div class="footer-lang-btns">
+        <button data-lang="fr" onclick="changeLanguage('fr')">FR</button>
+        <button data-lang="ar" onclick="changeLanguage('ar')">AR</button>
+        <button data-lang="en" onclick="changeLanguage('en')">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <div data-i18n="footer.copyright">© 2025 GTEL. Tous droits réservés. Intégré avec expertise au Maroc.</div>
+    <div class="legal-links">
+      <a href="#" data-i18n="footer.legal1">Mentions Légales</a>
+      <a href="#" data-i18n="footer.legal2">Politique de Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ MODAL DEVIS ============ -->
+<div class="modal-overlay" id="quote-modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeQuoteModal()">&times;</button>
+    <div class="modal-body">
+      <span class="modal-tag" data-i18n="modal.tag">Demande d'étude & contact</span>
+      <h3 data-i18n="modal.title">Demande de devis</h3>
+      <p data-i18n="modal.desc">Demandez l'intervention d'un ingénieur GTEL. Traitement sous 24h.</p>
+
+      <form id="gtel-quote-form" onsubmit="handleQuoteSubmit(event)">
+        <div class="form-grid">
+          <div class="field">
+            <label data-i18n="modal.name">Nom / Entreprise *</label>
+            <input type="text" id="quote-name" required>
+          </div>
+          <div class="field">
+            <label data-i18n="modal.phone">Téléphone *</label>
+            <input type="tel" id="quote-phone" required>
+          </div>
+          <div class="field field-full">
+            <label data-i18n="modal.email">Email *</label>
+            <input type="email" id="quote-email" required>
+          </div>
+          <div class="field field-full">
+            <label data-i18n="modal.service">Solution ciblée</label>
+            <select id="quote-service">
+              <option value="Infrastructure Réseau">Infrastructure Réseau</option>
+              <option value="Datacenter">Datacenter / Serveurs</option>
+              <option value="Cybersécurité">Cybersécurité</option>
+              <option value="Vidéosurveillance">Vidéosurveillance</option>
+              <option value="Contrôle d'Accès">Contrôle d'Accès</option>
+              <option value="Téléphonie IP" selected>Téléphonie IP</option>
+              <option value="Salles de Réunion">Salles de Réunion</option>
+              <option value="Sonorisation">Sonorisation</option>
+              <option value="Services Managés">Services Managés</option>
+            </select>
+          </div>
+          <div class="field-full">
+            <button type="submit" class="submit-btn" data-i18n="modal.submit">Envoyer</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BOUTON FLOTTANT — commande/devis toujours visible ============ -->
+<button class="float-order" onclick="openQuoteModal('Téléphonie IP')" aria-label="Demander un devis">
+  <span class="eq" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></span>
+  <span class="label" data-i18n="float.cta">Demander un devis</span>
+</button>
+
+<!-- ============ TOAST ============ -->
+<div class="toast" id="success-toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+  <div class="toast-msg" id="toast-msg" data-i18n="toast.success">Demande Envoyée !</div>
+</div>
+
+<script src="gtel-telephonie-translations.js"></script>
+<script>window.GTEL_TRANSLATIONS = GTEL_TRANSLATIONS;</script>
+<script src="gtel-telephonie-script.js"></script>
+
+<!-- ============ CARROUSEL ÉCOSYSTÈME (mobile) ============ -->
+<script>
+(function(){
+  var list = document.getElementById('eco-grid');
+  var prev = document.getElementById('eco-prev');
+  var next = document.getElementById('eco-next');
+  var dotsWrap = document.getElementById('eco-dots');
+  if(!list || !prev || !next) return;
+
+  var cards = Array.prototype.slice.call(list.children);
+  var isRTL = document.documentElement.getAttribute('dir') === 'rtl';
+
+  // Génère les points de pagination
+  cards.forEach(function(_, i){
+    var b = document.createElement('button');
+    b.setAttribute('aria-label', 'Aller à la carte ' + (i + 1));
+    if(i === 0) b.classList.add('active');
+    b.addEventListener('click', function(){ scrollToCard(i); });
+    dotsWrap.appendChild(b);
+  });
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function cardStep(){
+    if(!cards[0]) return 0;
+    var style = window.getComputedStyle(list);
+    var gap = parseFloat(style.columnGap || style.gap || 0) || 0;
+    return cards[0].getBoundingClientRect().width + gap;
+  }
+
+  function scrollToCard(i){
+    var step = cardStep() * (isRTL ? -1 : 1);
+    list.scrollTo({ left: step * i, behavior: 'smooth' });
+  }
+
+  function currentIndex(){
+    var step = cardStep();
+    if(!step) return 0;
+    return Math.round(Math.abs(list.scrollLeft) / step);
+  }
+
+  function updateDots(){
+    var idx = Math.max(0, Math.min(cards.length - 1, currentIndex()));
+    dots.forEach(function(d, i){ d.classList.toggle('active', i === idx); });
+  }
+
+  prev.addEventListener('click', function(){
+    var idx = Math.max(0, currentIndex() - 1);
+    scrollToCard(isRTL ? Math.min(cards.length - 1, currentIndex() + 1) : idx);
+  });
+  next.addEventListener('click', function(){
+    var idx = Math.min(cards.length - 1, currentIndex() + 1);
+    scrollToCard(isRTL ? Math.max(0, currentIndex() - 1) : idx);
+  });
+
+  var scrollTimer;
+  list.addEventListener('scroll', function(){
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(updateDots, 80);
+  }, { passive: true });
+
+  window.addEventListener('resize', updateDots);
+})();
+</script>
+
+<script src="shared-nav.js?v=6"></script>
+</body>
+</html>
