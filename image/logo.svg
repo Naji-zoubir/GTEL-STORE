@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 140" width="100%" height="100%">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@700&amp;family=Montserrat:wght@900&amp;display=swap');
+      .tel-text {
+        font-family: 'Fredoka', 'Montserrat', 'Arial Black', sans-serif;
+        font-weight: 700;
+        font-size: 72px;
+        fill: #5a248b;
+        letter-spacing: -3px;
+      }
+      .store-text {
+        font-family: 'Montserrat', 'Arial Black', sans-serif;
+        font-weight: 900;
+        font-size: 21px;
+        fill: #5a248b;
+        letter-spacing: 11px;
+      }
+    </style>
+  </defs>
+
+  <!-- G-Cart Logo Icon in deep royal purple #5a248b -->
+  <g fill="#5a248b">
+    <!-- Handle of the cart (top-left wing-like shape) -->
+    <path d="M42,42 C38,36 34,36 34,36 L24,42 C22.5,43 22,45 23,46.5 C24,48 26,48.5 27.5,47.5 L34.5,43 C34.5,43 37.5,47 40,51 Z" />
+    
+    <!-- Main outer basket of the 'G' cart -->
+    <path d="M68,36 C50.5,36 38,47 38,63 C38,79 50.5,89 68,89 L96,89 C100,89 103,86 103,82 C103,78 100,75 96,75 L68,75 C58,75 52,70 52,63 C52,56 58,51 68,51 L96,51 C100,51 103,48 103,44 C103,40 100,37 96,37 Z" />
+    
+    <!-- Lower undercarriage loop -->
+    <path d="M96,63 L96,90 C96,104 84,115 68,115 C54,115 44,107 41,96 C40.5,92 43,89.5 47,89.5 C50.5,89.5 53.5,91.5 54,94 C56,101 61.5,103 68,103 C76,103 82,97.5 82,90 L82,63 Z" />
+    
+    <!-- True-to-image solid Hexagon wheels -->
+    <!-- Wheel 1 -->
+    <polygon points="44,122 51,118 58,122 58,130 51,134 44,130" />
+    <!-- Wheel 2 -->
+    <polygon points="66,122 73,118 80,122 80,130 73,134 66,130" />
+  </g>
+  
+  <!-- "tel" Bold typography perfectly aligned to the right of the G-cart -->
+  <text x="108" y="89" class="tel-text">tel</text>
+  
+  <!-- "STORE" tracked subtext perfectly spaced under "tel" -->
+  <text x="159" y="122" class="store-text" text-anchor="middle">STORE</text>
+</svg>

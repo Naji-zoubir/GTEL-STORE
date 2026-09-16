@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GTEL | Services Managés IT & Infogérance Proactive</title>
+<meta name="description" content="Services managés IT complets : audit périodique, maintenance préventive, supervision proactive. Infogérance professionnelle pour entreprises au Maroc.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Nunito:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="stylessm.css">
+</head>
+<body>
+
+<!-- SIGNAL RAIL — signature element: a literal uptime pulse running the page -->
+<div id="signal-rail" aria-hidden="true"><div class="rail-fill"></div></div>
+
+<!-- HEADER -->
+<header id="site-header">
+  <div class="wrap header-inner">
+    <a href="index.html" class="brand">
+      <img src="image/image.webp" alt="Logo GTEL">
+    </a>
+
+    <nav class="primary-nav" aria-label="Navigation principale">
+      <a href="index.html" class="nav-link" data-i18n="nav.home">Accueil</a>
+
+      <div class="nav-dropdown">
+        <a href="index.html#solutions" class="nav-link is-active" data-i18n="nav.solutions">Solutions</a>
+        <div class="nav-dropdown-panel">
+          <a href="InfraDigitale.html" data-i18n="nav.sub.infra_digitale">Infrastructure Digitale</a>
+          <a href="infrastructure-reseau.html" data-i18n="nav.sub.infra_reseau">Infrastructure Réseau</a>
+          <a href="datacenter.html" data-i18n="nav.sub.datacenter">Datacenter</a>
+          <a href="cybersecurite.html" data-i18n="nav.sub.cyber">Cybersécurité</a>
+          <a href="videosurveillance.html" data-i18n="nav.sub.video">Vidéosurveillance</a>
+          <a href="controle-acces.html" data-i18n="nav.sub.controle">Contrôle d'Accès</a>
+          <a href="telephonie-ip.html" data-i18n="nav.sub.telephonie">Téléphonie IP</a>
+          <a href="salles-reunion.html" data-i18n="nav.sub.salles">Salles de Réunion</a>
+          <a href="sonorisation.html" data-i18n="nav.sub.sono">Sonorisation</a>
+          <a href="services-manages.html" class="current" data-i18n="nav.sub.services">Services Managés</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="header-tools">
+      <button class="icon-btn" id="theme-toggle" aria-label="Basculer le thème sombre / clair">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path></svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      </button>
+
+      <div class="lang-switch">
+        <button class="lang-current" id="current-lang-btn">
+          <span id="current-lang-flag">🇫🇷</span>
+          <span id="current-lang-code">FR</span>
+        </button>
+        <div class="lang-panel">
+          <button class="lang-opt active" data-lang="fr" onclick="changeLanguage('fr')">🇫🇷 Français</button>
+          <button class="lang-opt" data-lang="ar" onclick="changeLanguage('ar')">🇲🇦 العربية</button>
+          <button class="lang-opt" data-lang="en" onclick="changeLanguage('en')">🇬🇧 English</button>
+        </div>
+      </div>
+
+      <button class="btn btn-solid" onclick="openQuoteModal('Services Managés')" data-i18n="nav.contact" id="desktop-contact-btn">Nous Contacter</button>
+
+      <button class="mobile-trigger" id="mobile-trigger" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE PANEL -->
+<div id="mobile-panel">
+  <div class="mobile-panel-top">
+    <img src="image/image.webp" alt="Logo GTEL" style="height:40px;">
+    <button class="icon-btn" id="mobile-panel-close" aria-label="Fermer le menu">✕</button>
+  </div>
+  <nav>
+    <a href="index.html" class="nav-link" data-i18n="nav.home">Accueil</a>
+    <a href="InfraDigitale.html" class="sub-link" data-i18n="nav.sub.infra_digitale">Infrastructure Digitale</a>
+    <a href="infrastructure-reseau.html" class="sub-link" data-i18n="nav.sub.infra_reseau">Infrastructure Réseau</a>
+    <a href="datacenter.html" class="sub-link" data-i18n="nav.sub.datacenter">Datacenter</a>
+    <a href="cybersecurite.html" class="sub-link" data-i18n="nav.sub.cyber">Cybersécurité</a>
+    <a href="videosurveillance.html" class="sub-link" data-i18n="nav.sub.video">Vidéosurveillance</a>
+    <a href="controle-acces.html" class="sub-link" data-i18n="nav.sub.controle">Contrôle d'Accès</a>
+    <a href="telephonie-ip.html" class="sub-link" data-i18n="nav.sub.telephonie">Téléphonie IP</a>
+    <a href="salles-reunion.html" class="sub-link" data-i18n="nav.sub.salles">Salles de Réunion</a>
+    <a href="sonorisation.html" class="sub-link" data-i18n="nav.sub.sono">Sonorisation</a>
+    <a href="services-manages.html" class="sub-link" data-i18n="nav.sub.services">Services Managés</a>
+  </nav>
+  <button class="btn btn-solid" onclick="openQuoteModal('Services Managés')" data-i18n="nav.contact">Nous Contacter</button>
+</div>
+
+<main>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-photo" aria-hidden="true">
+    <img src="image/smhero.webp" alt="Services managés IT avec supervision proactive et monitoring d'infrastructure" loading="eager" onerror="this.parentElement.remove()">
+  </div>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow" data-i18n="hero.badge">Services Managés & MSP</span>
+      <h1 data-i18n="hero.title">Votre infrastructure exige une discipline d'exploitation. Pas une intervention occasionnelle.</h1>
+      <p data-i18n="hero.desc">Audit périodique, maintenance préventive, supervision proactive et accompagnement à l'évolution. Nos services managés transforment vos infrastructures en actifs maîtrisés, et non en sujets d'inquiétude récurrents.</p>
+      <button onclick="openQuoteModal('Services Managés')" class="btn btn-outline" data-i18n="hero.cta">Demander un contrat de services</button>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <line x1="200" y1="200" x2="80" y2="90" stroke="#FBB82B" stroke-width="2" opacity="0.5" class="pulse-line"/>
+        <line x1="200" y1="200" x2="330" y2="110" stroke="#FBB82B" stroke-width="2" opacity="0.5" class="pulse-line"/>
+        <line x1="200" y1="200" x2="90" y2="310" stroke="#FBB82B" stroke-width="2" opacity="0.5" class="pulse-line"/>
+        <line x1="200" y1="200" x2="320" y2="300" stroke="#FBB82B" stroke-width="2" opacity="0.5" class="pulse-line"/>
+        <line x1="200" y1="200" x2="200" y2="40" stroke="#8B5CF6" stroke-width="2" opacity="0.4" class="pulse-line"/>
+        <circle cx="200" cy="200" r="30" fill="none" stroke="#FBB82B" stroke-width="2"/>
+        <circle cx="200" cy="200" r="10" fill="#FBB82B" class="pulse-node"/>
+        <circle cx="80" cy="90" r="6" fill="#fff" class="pulse-node"/>
+        <circle cx="330" cy="110" r="6" fill="#fff" class="pulse-node"/>
+        <circle cx="90" cy="310" r="6" fill="#fff" class="pulse-node"/>
+        <circle cx="320" cy="300" r="6" fill="#fff" class="pulse-node"/>
+        <circle cx="200" cy="40" r="6" fill="#8B5CF6" class="pulse-node"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="wrap" id="breadcrumb">
+    <div class="crumb-row">
+      <div>
+        <a href="index.html" style="color:rgba(255,255,255,0.85)" data-i18n="breadcrumb.home">Accueil</a>
+        <span class="sep" style="color:rgba(255,255,255,0.4)">/</span>
+        <a href="index.html#solutions" style="color:rgba(255,255,255,0.85)" data-i18n="breadcrumb.solutions">Nos Solutions</a>
+        <span class="sep" style="color:rgba(255,255,255,0.4)">/</span>
+        <span style="color:#fff" data-i18n="breadcrumb.current">Services Managés</span>
+      </div>
+      <a href="index.html" class="crumb-back" style="color:var(--gold)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        <span data-i18n="breadcrumb.back">Retour à l'accueil</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 1 — MANIFESTO / TIMELINE -->
+<section id="manifesto" style="background: var(--bg-services);">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="s1.eyebrow">Changement de paradigme</span>
+      <h2 data-i18n="s1.title">Pourquoi un contrat plutôt qu'un appel à la panne</h2>
+      <p data-i18n="s1.desc">Le modèle « j'appelle quand ça casse » est encore très répandu, mais il fragilise votre entreprise. Il présente trois défauts majeurs :</p>
+    </div>
+
+    <div class="timeline-list">
+      <div class="timeline-item is-bad reveal">
+        <div class="timeline-node"><div class="dot"></div></div>
+        <div class="timeline-body">
+          <span class="timeline-tag" data-i18n="s1.item1.tag">Défaut 01</span>
+          <h3 data-i18n="s1.item1.title">Maximise le coût total</h3>
+          <p data-i18n="s1.item1.desc">Intervention en urgence, taux horaire majoré, et indisponibilité prolongée qui paralyse la production de vos collaborateurs.</p>
+          <div class="timeline-photo"><img src="image/sm4.webp" alt="Intervention en urgence" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="timeline-item is-bad reveal">
+        <div class="timeline-node"><div class="dot"></div></div>
+        <div class="timeline-body">
+          <span class="timeline-tag" data-i18n="s1.item2.tag">Défaut 02</span>
+          <h3 data-i18n="s1.item2.title">Maximise le risque</h3>
+          <p data-i18n="s1.item2.desc">Les pannes deviennent visibles beaucoup trop tardivement, lorsque les dégâts matériels ou les pertes de données se sont déjà aggravés.</p>
+          <div class="timeline-photo"><img src="image/sm5.webp" alt="Panne détectée trop tard" loading="lazy"></div>
+        </div>
+      </div>
+      <div class="timeline-item is-bad reveal">
+        <div class="timeline-node"><div class="dot"></div></div>
+        <div class="timeline-body">
+          <span class="timeline-tag" data-i18n="s1.item3.tag">Défaut 03</span>
+          <h3 data-i18n="s1.item3.title">Bloque toute évolution</h3>
+          <p data-i18n="s1.item3.desc">Votre infrastructure dérive lentement avec le temps. L'absence de suivi continu signifie que personne ne tient les standards de sécurité ou de performance à jour.</p>
+          <div class="timeline-photo"><img src="image/sm6.webp" alt="Infrastructure vieillissante" loading="lazy"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout-box reveal" data-i18n="s1.callout">Un contrat de services managés inverse cette logique : vous payez un coût fixe et prévisible, en échange d'une garantie absolue de performance et de réactivité.</div>
+  </div>
+</section>
+
+<!-- SECTION 2 — PRICING CONSOLE -->
+<section id="offre" class="tinted divider-top">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="s2.eyebrow">Abonnements de services</span>
+      <h2 data-i18n="s2.title">Notre offre, en 3 niveaux</h2>
+      <p data-i18n="s2.desc">Choisissez le degré d'intervention qui correspond à la criticité de votre entreprise.</p>
+    </div>
+
+    <div class="console reveal">
+      <div class="console-head">
+        <span class="console-dot" style="background:#EF4444"></span>
+        <span class="console-dot" style="background:#FBB82B"></span>
+        <span class="console-dot" style="background:#22C55E"></span>
+        <span>gtel-msp — niveaux-de-service.log</span>
+      </div>
+
+      <!-- Mobile: tabs -->
+      <div class="plan-tabs">
+        <button class="plan-tab active" data-plan="essentiel" data-i18n="s2.th.essentiel">Essentiel</button>
+        <button class="plan-tab" data-plan="avance" data-i18n="s2.th.avance">Avancé</button>
+        <button class="plan-tab" data-plan="premium" data-i18n="s2.th.premium">Premium</button>
+      </div>
+      <div class="plan-cards">
+        <div class="plan-card active" data-plan="essentiel">
+          <div class="plan-row"><span class="k" data-i18n="s2.row1.label">Maintenance préventive</span><span class="v" data-i18n="s2.row1.essentiel">1 visite / an</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row2.label">Délai d'intervention</span><span class="v" data-i18n="s2.row2.essentiel">J+2 ouvrés</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row3.label">Supervision à distance</span><span class="v" data-i18n="s2.row3.essentiel">—</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row4.label">Reporting</span><span class="v" data-i18n="s2.row4.essentiel">Annuel</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row5.label">Comité de pilotage</span><span class="v" data-i18n="s2.row5.essentiel">—</span></div>
+        </div>
+        <div class="plan-card" data-plan="avance">
+          <div class="plan-row"><span class="k" data-i18n="s2.row1.label">Maintenance préventive</span><span class="v" data-i18n="s2.row1.avance">2 visites / an</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row2.label">Délai d'intervention</span><span class="v" data-i18n="s2.row2.avance">J+1 ouvré</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row3.label">Supervision à distance</span><span class="v" data-i18n="s2.row3.avance">Heures ouvrées</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row4.label">Reporting</span><span class="v" data-i18n="s2.row4.avance">Trimestriel</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row5.label">Comité de pilotage</span><span class="v" data-i18n="s2.row5.avance">Annuel</span></div>
+        </div>
+        <div class="plan-card" data-plan="premium">
+          <div class="plan-row"><span class="k" data-i18n="s2.row1.label">Maintenance préventive</span><span class="v" data-i18n="s2.row1.premium">4 visites / an</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row2.label">Délai d'intervention</span><span class="v" data-i18n="s2.row2.premium">4 heures (24/7)</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row3.label">Supervision à distance</span><span class="v" data-i18n="s2.row3.premium">24/7 + alerting</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row4.label">Reporting</span><span class="v" data-i18n="s2.row4.premium">Mensuel</span></div>
+          <div class="plan-row"><span class="k" data-i18n="s2.row5.label">Comité de pilotage</span><span class="v" data-i18n="s2.row5.premium">Trimestriel</span></div>
+        </div>
+      </div>
+
+      <!-- Desktop: full table -->
+      <div style="overflow-x:auto;">
+        <table class="pricing-table">
+          <thead>
+            <tr>
+              <th data-i18n="s2.th.service">Prestation</th>
+              <th data-i18n="s2.th.essentiel">Essentiel</th>
+              <th class="highlight" data-i18n="s2.th.avance">Avancé</th>
+              <th class="premium" data-i18n="s2.th.premium">Premium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="label" data-i18n="s2.row1.label">Maintenance préventive</td>
+              <td data-i18n="s2.row1.essentiel">1 visite / an</td>
+              <td class="highlight" data-i18n="s2.row1.avance">2 visites / an</td>
+              <td data-i18n="s2.row1.premium">4 visites / an</td>
+            </tr>
+            <tr>
+              <td class="label" data-i18n="s2.row2.label">Délai d'intervention</td>
+              <td data-i18n="s2.row2.essentiel">J+2 ouvrés</td>
+              <td class="highlight" data-i18n="s2.row2.avance">J+1 ouvré</td>
+              <td data-i18n="s2.row2.premium">4 heures (24/7)</td>
+            </tr>
+            <tr>
+              <td class="label" data-i18n="s2.row3.label">Supervision à distance</td>
+              <td data-i18n="s2.row3.essentiel">—</td>
+              <td class="highlight" data-i18n="s2.row3.avance">Heures ouvrées</td>
+              <td data-i18n="s2.row3.premium">24/7 + alerting</td>
+            </tr>
+            <tr>
+              <td class="label" data-i18n="s2.row4.label">Reporting</td>
+              <td data-i18n="s2.row4.essentiel">Annuel</td>
+              <td class="highlight" data-i18n="s2.row4.avance">Trimestriel</td>
+              <td data-i18n="s2.row4.premium">Mensuel</td>
+            </tr>
+            <tr>
+              <td class="label" data-i18n="s2.row5.label">Comité de pilotage</td>
+              <td data-i18n="s2.row5.essentiel">—</td>
+              <td class="highlight" data-i18n="s2.row5.avance">Annuel</td>
+              <td data-i18n="s2.row5.premium">Trimestriel</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="pricing-note reveal" data-i18n="s2.note">La grille tarifaire détaillée est établie sur la base d'un audit préalable du périmètre couvert. Le coût d'un contrat dépend du nombre de sites, de la complexité de l'infrastructure et du niveau de criticité. Aucune offre standard ne peut sérieusement chiffrer ces paramètres en aveugle.</div>
+  </div>
+</section>
+
+<!-- SECTION 3 — PERIMETER CAROUSEL -->
+<section id="perimetre">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" data-i18n="s3.eyebrow">Couverture technologique</span>
+      <h2 data-i18n="s3.title">Périmètre transverse</h2>
+      <p data-i18n="s3.desc">Les services managés GTEL s'appliquent à l'ensemble de notre offre, garantissant une cohérence technologique totale sur tous vos systèmes.</p>
+    </div>
+
+    <div class="perimeter-track reveal">
+      <div class="perimeter-card">
+        <div class="perimeter-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg></div>
+        <h3 data-i18n="s3.item1.title">Infrastructure réseau</h3>
+        <p data-i18n="s3.item1.desc">Supervision des switches, routeurs, points d'accès, et alertes proactives en cas de saturation ou de panne.</p>
+      </div>
+      <div class="perimeter-card">
+        <div class="perimeter-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg></div>
+        <h3 data-i18n="s3.item2.title">Datacenter</h3>
+        <p data-i18n="s3.item2.desc">Supervision environnementale, gestion de la santé des serveurs et onduleurs, suivi strict de la climatisation.</p>
+      </div>
+      <div class="perimeter-card">
+        <div class="perimeter-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+        <h3 data-i18n="s3.item3.title">Cybersécurité</h3>
+        <p data-i18n="s3.item3.desc">Veille continue sur les vulnérabilités, application des correctifs critiques et revue périodique des configurations des firewalls.</p>
+      </div>
+      <div class="perimeter-card">
+        <div class="perimeter-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"></path><rect x="1" y="5" width="15" height="14" rx="2"></rect></svg></div>
+        <h3 data-i18n="s3.item4.title">Vidéosurveillance & Accès</h3>
+        <p data-i18n="s3.item4.desc">Supervision de l'état en ligne des caméras et lecteurs, vérification de la rétention vidéo et audit de configuration des accès.</p>
+      </div>
+      <div class="perimeter-card">
+        <div class="perimeter-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div>
+        <h3 data-i18n="s3.item5.title">Téléphonie & coms</h3>
+        <p data-i18n="s3.item5.desc">Surveillance du PBX, gestion des évolutions du SVI (serveur vocal), et optimisation continue de vos coûts de communication.</p>
+      </div>
+      <div class="perimeter-card">
+        <div class="perimeter-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg></div>
+        <h3 data-i18n="s3.item6.title">Salles de réunion</h3>
+        <p data-i18n="s3.item6.desc">Vérification de l'état des équipements de visio, mises à jour logicielles, intervention proactive avant impact sur vos réunions.</p>
+      </div>
+    </div>
+    <div class="scroll-hint"><span class="active"></span><span></span><span></span><span></span><span></span><span></span></div>
+  </div>
+</section>
+
+<!-- SECTION 4 — ENGAGEMENT -->
+<section id="engagement" class="tinted divider-top" style="background: var(--bg-about);">
+  <div class="wrap">
+    <div class="section-head centered reveal" style="margin-inline:auto;">
+      <h2 data-i18n="s4.title">Notre engagement</h2>
+      <p data-i18n="s4.desc">La maintenance n'est pas une boîte noire — c'est un dialogue transparent basé sur des faits.</p>
+    </div>
+
+    <div class="engagement-grid reveal">
+      <div class="engagement-item">
+        <h4 data-i18n="s4.item1.title">SLA contractuels</h4>
+        <p data-i18n="s4.item1.desc">Délai de prise en compte, délai de résolution, taux de disponibilité. Nos engagements sont écrits, mesurés et reportés. Pas d'engagement, pas de reporting : pas de service managé.</p>
+        <div class="engagement-photo"><img src="image/sm1.webp" alt="SLA contractuels" loading="lazy"></div>
+      </div>
+      <div class="engagement-item">
+        <h4 data-i18n="s4.item2.title">Documentation maintenue</h4>
+        <p data-i18n="s4.item2.desc">Toute évolution de l'infrastructure est documentée. À tout moment, vous (ou un autre intégrateur) pouvez reprendre la main avec un dossier à jour. C'est notre éthique professionnelle.</p>
+        <div class="engagement-photo"><img src="image/sm2.webp" alt="Documentation maintenue" loading="lazy"></div>
+      </div>
+      <div class="engagement-item">
+        <h4 data-i18n="s4.item3.title">Comité de pilotage</h4>
+        <p data-i18n="s4.item3.desc">Selon le niveau de service, nous tenons un point périodique structuré : présentation des indicateurs de performance, historique des incidents, et recommandations d'évolution.</p>
+        <div class="engagement-photo"><img src="image/sm3.webp" alt="Comité de pilotage" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 — FAQ -->
+<section id="faq">
+  <div class="wrap" style="max-width:880px;">
+    <div class="section-head centered reveal" style="margin-inline:auto;">
+      <span class="eyebrow" data-i18n="s5.eyebrow">Questions des décideurs</span>
+      <h2 data-i18n="s5.title">FAQ Services Managés</h2>
+    </div>
+
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFAQ(this)">
+          <span class="q"><span class="tag">01</span><span data-i18n="faq1.q">Que se passe-t-il si vous n'êtes pas joignables le jour d'un incident critique ?</span></span>
+          <svg class="faq-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-content"><p data-i18n="faq1.a">Pour les contrats Premium, nous engageons un délai de 4 heures 24/7 avec une astreinte joignable par téléphone et email, supervisée. En cas de défaut, des pénalités contractuelles s'appliquent. C'est ce qui distingue un véritable contrat de services d'un simple engagement commercial.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFAQ(this)">
+          <span class="q"><span class="tag">02</span><span data-i18n="faq2.q">Devons-nous prendre un contrat sur tout, ou peut-on en limiter le périmètre ?</span></span>
+          <svg class="faq-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-content"><p data-i18n="faq2.a">Le périmètre se définit avec vous. Certains clients prennent un contrat Avancé sur le réseau et la cybersécurité, et un contrat Essentiel sur la téléphonie. La granularité existe. Ce qui compte, c'est que les SLA correspondent à la criticité réelle de chaque brique de votre infrastructure.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-btn" aria-expanded="false" onclick="toggleFAQ(this)">
+          <span class="q"><span class="tag">03</span><span data-i18n="faq3.q">Et si nous avons déjà une équipe IT interne ?</span></span>
+          <svg class="faq-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <div class="faq-content"><p data-i18n="faq3.a">Nos services managés s'articulent avec les équipes internes — nous ne les remplaçons pas. Le partage classique : votre équipe pilote l'exploitation courante et l'assistance de proximité, nous prenons en charge les expertises pointues, la supervision, les incidents complexes et les évolutions. C'est généralement le modèle le plus efficace économiquement.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <div class="wrap cta-inner">
+    <div>
+      <h2 data-i18n="cta.title">Arrêtez de subir. Pilotez.</h2>
+      <p data-i18n="cta.desc">Demandez un audit gratuit et étudions ensemble le niveau de service adapté à votre entreprise.</p>
+    </div>
+    <button class="btn btn-gold" onclick="openQuoteModal('Services Managés')">
+      <span data-i18n="cta.button">Discuter d'un contrat de services</span>
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+    </button>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer id="site-footer">
+  <div class="wrap footer-grid">
+    <div>
+      <a href="../index.html"><img class="footer-logo" src="https://gtelstore.ma/wp-content/uploads/2024/10/GTEL-STORE-BLANC.png" alt="Logo GTEL"></a>
+      <p class="footer-desc" data-i18n="footer.desc">Expert marocain en solutions réseaux, cyber-intelligence et infrastructures de télécommunications intégrées à Casablanca et sur tout le royaume.</p>
+      <div class="social-row">
+        <a class="social-btn" href="https://web.facebook.com/GtelecomTech?_rdc=1&_rdr#" target="_blank" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+        <a class="social-btn" href="https://ma.linkedin.com/company/gtelstore" target="_blank" aria-label="LinkedIn"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        <a class="social-btn" href="https://www.instagram.com/gtelstore/" target="_blank" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
+        <a class="social-btn" href="https://www.tiktok.com/@gtelstore" target="_blank" aria-label="TikTok"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 5.82s.51.5 0 0A4.278 4.278 0 0 1 15.54 3h-3.09v12.4a2.592 2.592 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6 0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64 0 3.33 2.76 5.7 5.69 5.7 3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48z"></path></svg></a>
+        <a class="social-btn" href="https://www.youtube.com/channel/UCglE90LPV-4MBtI3njcxhLA" target="_blank" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568Z"></path></svg></a>
+        <a class="social-btn" href="https://web.whatsapp.com/send?phone=+212%20666-287341" target="_blank" aria-label="WhatsApp"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"></path></svg></a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4 data-i18n="footer.nav.title">Navigation</h4>
+      <ul>
+        <li><a href="index.html" data-i18n="footer.nav.home">Accueil</a></li>
+        <li><a href="index.html#solutions" data-i18n="footer.nav.solutions">Nos Solutions</a></li>
+        <li><a href="#" onclick="openQuoteModal('Devis Footer')" data-i18n="footer.nav.diagnostic">Demander un diagnostic</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4 data-i18n="footer.contact.title">Informations de contact</h4>
+      <div class="footer-contact-item">
+        <svg width="17" height="17" stroke="var(--gold)" stroke-width="2.2" fill="none" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+        <span>241, Boulevard Emile Zola, 5ème étage Bureau 10, 20082 Casablanca</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg width="17" height="17" stroke="var(--gold)" stroke-width="2.2" fill="none" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        <span>+212-666287341</span>
+      </div>
+      <div class="footer-contact-item">
+        <svg width="17" height="17" stroke="var(--gold)" stroke-width="2.2" fill="none" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        <span>pro@gtelstore.ma</span>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4 data-i18n="footer.lang.title">Langues</h4>
+      <div class="footer-lang-row">
+        <button onclick="changeLanguage('fr')">FR</button>
+        <button onclick="changeLanguage('ar')">AR</button>
+        <button onclick="changeLanguage('en')">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap footer-bottom">
+    <div data-i18n="footer.copyright">© 2025 GTEL. Tous droits réservés. Intégré avec expertise au Maroc.</div>
+    <div class="links">
+      <a href="#" data-i18n="footer.legal">Mentions Légales</a>
+      <a href="#" data-i18n="footer.privacy">Politique de Confidentialité</a>
+    </div>
+  </div>
+</footer>
+
+<!-- QUOTE MODAL -->
+<div id="quote-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeQuoteModal()" aria-label="Fermer">&times;</button>
+    <div class="modal-body">
+      <span class="eyebrow" data-i18n="modal.badge">Demande d'étude & contact</span>
+      <h3 data-i18n="modal.title">Proposition MSP</h3>
+      <p data-i18n="modal.desc">Configurez votre niveau d'astreinte, helpdesk et stratégie d'externalisation avec GTEL Maroc.</p>
+
+      <form id="gtel-quote-form" onsubmit="handleQuoteSubmit(event)">
+        <div class="field-grid">
+          <div class="field">
+            <label data-i18n="modal.name">Nom / Entreprise *</label>
+            <input type="text" id="quote-name" required>
+          </div>
+          <div class="field">
+            <label data-i18n="modal.phone">Téléphone *</label>
+            <input type="tel" id="quote-phone" required>
+          </div>
+        </div>
+        <div class="field">
+          <label data-i18n="modal.email">Email *</label>
+          <input type="email" id="quote-email" required>
+        </div>
+        <div class="field">
+          <label data-i18n="modal.service">Abonnement visé</label>
+          <select id="quote-service">
+            <option value="Services Managés" selected data-i18n="modal.opt.business">Contrat MSP Business (Recommandé)</option>
+            <option value="MSP Essentiel" data-i18n="modal.opt.essentiel">Contrat MSP Essentiel</option>
+            <option value="MSP Enterprise" data-i18n="modal.opt.premium">Contrat MSP Premium</option>
+            <option value="Audit IT" data-i18n="modal.opt.audit">Audit de Parc / Diagnostic Gratuit</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-solid modal-submit" data-i18n="modal.submit">Envoyer ma demande</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="success-toast">
+  <svg width="22" height="22" stroke="var(--gold)" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+  <span id="toast-msg" style="font-weight:700; font-size:13px; text-transform:uppercase; letter-spacing:0.04em;">Demande Envoyée !</span>
+</div>
+
+<script src="translationssm.js"></script>
+<script src="scriptsm.js"></script>
+</body>
+</html>

@@ -1,0 +1,982 @@
+/* ══════════════════════════════════════════════════════════════════
+  GTEL — style.css
+  Design tokens — "Aurora Technique"
+Couleur   : #552583 (primaire) · #3c1860 (primaire foncé) · #FBB82B (accent)
+  #e5a41c (accent foncé) · #FFFFFF / #F8F7FC (fonds) · #1A1A2E (texte)
+  Type      : Syne (titres) · Nunito (badges + corps) · JetBrains Mono (accents)
+  Signature : lueur qui suit le curseur + poussière de particules dorées,
+  cartes de verre flottantes, CTA qui pulse.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ============ CSS VARIABLES (clair / sombre) ============
+   Palette de marque — 5 teintes fixes, identiques dans les deux modes :
+   violet, violet foncé, or, or foncé, vert signal.
+   Valeurs copiées telles quelles depuis style-redesign.css
+   (salles-reunion.html), pour que index.html partage exactement
+   les mêmes couleurs, en clair comme en sombre. */
+:root {
+  /* -- couleurs de marque fixes -- */
+  --purple: #552583;
+  --purple-dark: #2D1149;
+  --purple-light: #8B5CF6;
+  --gold: #FBB82B;
+  --gold-dark: #e5a41c;
+  --signal-good: #1FAE6B;
+  --signal-warn: var(--gold);
+  --signal-bad: #E4483A;
+
+  /* -- triplets RGB (pour rgba() dynamiques) -- */
+  --purple-rgb: 85, 37, 131;
+  --purple-light-rgb: 139, 92, 246;
+  --gold-rgb: 251, 184, 43;
+
+  /* -- surfaces / texte (clair) --
+     Teinte volontairement plus marquée que sur salles-reunion.html :
+     les valeurs d'origine (#FAF9FC / #F1ECF8) sont visuellement quasi
+     identiques au blanc pur, donc invisibles à l'œil. On garde la même
+     famille de teinte (violet très clair) mais on pousse la saturation
+     pour que le changement se voie vraiment. */
+  /* -- surfaces / texte (clair) — valeurs EXACTES de style-redesign.css
+     (salles-reunion.html), pour que index.html ait la même couleur de
+     fond claire que la salle, au pixel près. -- */
+  --bg: #FAF9FC;
+  --bg-soft: #F1ECF8;
+  --surface-raised: #FFFFFF;
+  --ink: #17121F;
+  --mute: #665F7A;
+  --glass-bg: rgba(255,255,255,0.62);
+  --glass-border: rgb(255, 255, 255);
+  --header-bg: rgba(250, 249, 252, 0.65);
+  --card-soft-bg: var(--bg-soft);
+  --dropdown-bg: rgba(255,255,255,0.95);
+  --border: rgba(var(--purple-rgb),.14);
+  --border-strong: rgba(var(--purple-rgb),.28);
+  --console-bg: #17121F;
+  --console-text: #E9E4F5;
+  --shadow-color: var(--purple-rgb);
+
+  /* -- accent réactif au thème : violet en clair, or en sombre.
+     À utiliser sur les boutons/CTA pour que toute la page bascule
+     ensemble (même principe que gtel-telephonie-style.css / stylevv.css). -- */
+  --accent: var(--purple);
+  --accent-strong: var(--purple-dark);
+  --on-accent: #FFFFFF;
+}
+html.dark {
+  /* -- couleurs de marque : seule --purple-light s'éclaircit en sombre -- */
+  --purple-light: #A47CEE;
+  --purple-light-rgb: 164, 124, 238;
+
+  /* -- surfaces / texte (sombre) — valeurs EXACTES de style-redesign.css
+     (salles-reunion.html), pour que index.html ait la même couleur de
+     fond sombre que la salle, au pixel près. -- */
+  --bg: #0C0A12;
+  --bg-soft: #16121F;
+  --surface-raised: #221C30;
+  --ink: #F4F1FA;
+  --mute: #A79CC4;
+  --glass-bg: rgba(35,26,54,0.55);
+  --glass-border: rgba(255,255,255,0.08);
+  --header-bg: rgba(12,10,18,0.75);
+  --card-soft-bg: var(--bg-soft);
+  --dropdown-bg: rgba(35,26,54,0.97);
+  --border: rgba(255,255,255,.09);
+  --border-strong: rgba(255,255,255,.16);
+  --console-bg: #08060C;
+  --console-text: #D9CFEF;
+  --shadow-color: 0, 0, 0;
+
+  /* -- accent réactif au thème : or en sombre -- */
+  --accent: var(--gold);
+  --accent-strong: var(--gold-dark);
+  --on-accent: var(--purple-dark);
+}
+
+/* ============ SURFACES SÉMANTIQUES (identiques à style-redesign.css) ============
+   Utilisées à la place de couleurs Tailwind figées (text-white, text-slate-300,
+   bg-white/10...) pour que ces éléments basculent eux aussi avec le thème,
+   exactement comme sur salles-reunion.html. */
+.bg-page       { background-color: var(--bg); }
+.bg-page-soft  { background-color: var(--bg-soft); }
+.bg-surface2   { background-color: var(--surface-raised); }
+.text-ink2     { color: var(--ink); }
+.text-muted2   { color: var(--mute); }
+.border-hair   { border-color: var(--border); }
+.border-hair-strong { border-color: var(--border-strong); }
+
+/* Bouton "accent" réactif : dégradé violet en mode clair, dégradé or en
+   mode sombre — même traitement (dégradé + halo + lift au survol) que le
+   bouton principal de la page Téléphonie IP, appliqué ici à l'ensemble
+   du site pour une identité de bouton unifiée.
+   !important pour prévaloir sur les classes de couleur Tailwind figées
+   (bg-brand-purple, text-brand-purpleLight, etc.) déjà présentes dans le HTML. */
+.btn-accent {
+  background: linear-gradient(100deg, var(--purple), var(--purple-light)) !important;
+  border-color: transparent !important;
+  color: #fff !important;
+  box-shadow: 0 18px 38px -10px rgba(var(--purple-rgb),0.55);
+  transition: background .3s ease, border-color .3s ease, color .3s ease, transform .35s var(--ease, cubic-bezier(.16,1,.3,1)), box-shadow .3s ease;
+}
+.btn-accent:hover { transform: translateY(-3px); box-shadow: 0 22px 44px -10px rgba(var(--purple-rgb),0.6); }
+html.dark .btn-accent {
+  background: linear-gradient(100deg, var(--gold), var(--gold-dark)) !important;
+  color: var(--purple-dark) !important;
+  box-shadow: 0 18px 38px -10px rgba(var(--gold-rgb),0.55);
+}
+html.dark .btn-accent:hover { box-shadow: 0 22px 44px -10px rgba(var(--gold-rgb),0.6); }
+
+.btn-accent-outline {
+  background: transparent !important;
+  border-color: var(--accent) !important;
+  color: var(--accent) !important;
+}
+.btn-accent-outline:hover { background: var(--accent) !important; color: var(--on-accent) !important; }
+
+/* ============ BASE ============ */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg-soft); }
+::-webkit-scrollbar-thumb { background: #C9B8E8; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: var(--purple); }
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color .4s ease, color .4s ease;
+}
+h1, h2, h3, h4, .font-display { font-family: 'Syne', sans-serif; font-style: normal; }
+.font-sub { font-family: 'Nunito', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.font-script { font-family: 'Syne', sans-serif; }
+
+h1 { font-size: 3.4rem; line-height: 1.08; }
+h2 { font-size: 2.4rem; line-height: 1.15; }
+h3 { font-size: 1.6rem; line-height: 1.25; }
+
+/* Tailles de texte relevées pour la lisibilité (au lieu de 10/11px) */
+.text-body-sm { font-size: 14px; line-height: 1.65; }
+.text-label { font-size: 12px; letter-spacing: .06em; }
+.text-eyebrow { font-size: 12px; letter-spacing: .12em; }
+
+/* ============ FIX: contraste des descriptions de cartes ============
+  L'ancienne couleur fixe (#46465e) était pensée pour un fond clair.
+  En mode sombre, sur les cartes en verre violet foncé, ce gris devenait
+  quasi invisible (mauvais contraste, difficile à lire). On utilise
+  désormais une couleur qui s'adapte au thème et respecte un contraste
+   suffisant (WCAG AA) dans les deux modes. */
+.text-card-desc {
+  color: #3d3d52;               /* gris foncé, bon contraste sur fond clair/glass clair */
+  font-weight: 500;
+}
+html.dark .text-card-desc {
+  color: #E4E0F2;               /* lavande très clair, bon contraste sur fond violet foncé */
+}
+
+/* Même logique pour le texte "mute" utilisé un peu partout (paragraphes,
+   labels, stats) : en mode sombre on l'éclaircit pour rester lisible. */
+html.dark .text-brand-mute {
+  color: var(--mute);           /* #A79FC4 : contraste correct sur fond sombre */
+}
+
+[dir="rtl"] { direction: rtl; }
+[dir="rtl"] .lang-dropdown { right: auto; left: 0; }
+[dir="rtl"] .ltr-flip { transform: scaleX(-1); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* ============ AMBIENT LAYERS (signature) ============ */
+#mouse-glow {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 20%),
+    rgba(var(--gold-rgb),0.10), rgba(var(--purple-rgb),0.08) 45%, transparent 70%);
+  transition: opacity .4s ease;
+}
+#dust-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: .75; }
+
+/* Fond du hero réactif au thème — clair en mode clair, sombre en mode
+   sombre, exactement comme .hero-photo-section sur salles-reunion.html
+   (qui fond dans var(--bg)). Les taches or/violet restent en accent
+   décoratif par-dessus, à opacité réduite pour ne pas assombrir le
+   mode clair. */
+.aurora-bg {
+  background:
+    radial-gradient(700px circle at 15% 20%, rgba(var(--gold-rgb),0.22), transparent 60%),
+    radial-gradient(800px circle at 85% 15%, rgba(var(--purple-light-rgb),0.20), transparent 60%),
+    radial-gradient(900px circle at 50% 100%, rgba(var(--purple-rgb),0.16), transparent 65%),
+    linear-gradient(150deg, var(--bg) 0%, var(--bg-soft) 60%, var(--bg) 100%);
+  background-size: 200% 200%;
+  animation: aurora-drift 18s ease-in-out infinite;
+}
+html.dark .aurora-bg {
+  background:
+    radial-gradient(700px circle at 15% 20%, rgba(var(--gold-rgb),0.35), transparent 60%),
+    radial-gradient(800px circle at 85% 15%, rgba(var(--purple-light-rgb),0.35), transparent 60%),
+    radial-gradient(900px circle at 50% 100%, rgba(var(--purple-rgb),0.55), transparent 65%),
+    linear-gradient(150deg, var(--purple-dark) 0%, #230b3a 60%, var(--bg) 100%);
+  background-size: 200% 200%;
+}
+@keyframes aurora-drift {
+  0%, 100% { background-position: 0% 0%, 100% 0%, 50% 100%, 0 0; }
+  50% { background-position: 20% 20%, 80% 30%, 45% 90%, 0 0; }
+}
+
+/* ============ SECTION "PÔLES D'EXPERTISE" — réactive au thème ============
+   Mode clair : palette claire (blanc / lilas très pâle, texte encre/violet).
+   Mode sombre : fond sombre "aurora" (comme le reste du site), texte blanc,
+   accents or — cohérent avec l'identité visuelle en mode sombre. */
+#poles.aurora-bg {
+  background:
+    radial-gradient(700px circle at 15% 20%, rgba(var(--gold-rgb),0.16), transparent 60%),
+    radial-gradient(800px circle at 85% 15%, rgba(var(--purple-light-rgb),0.14), transparent 60%),
+    radial-gradient(900px circle at 50% 100%, rgba(var(--purple-rgb),0.10), transparent 65%),
+    linear-gradient(150deg, #FDFCFE 0%, #F3EEFA 55%, #FBF7EE 100%);
+  background-size: 200% 200%;
+}
+html.dark #poles.aurora-bg {
+  background:
+    radial-gradient(700px circle at 15% 20%, rgba(var(--gold-rgb),0.35), transparent 60%),
+    radial-gradient(800px circle at 85% 15%, rgba(var(--purple-light-rgb),0.35), transparent 60%),
+    radial-gradient(900px circle at 50% 100%, rgba(var(--purple-rgb),0.55), transparent 65%),
+    linear-gradient(150deg, var(--purple-dark) 0%, #230b3a 60%, var(--bg) 100%);
+  background-size: 200% 200%;
+}
+
+/* Étoiles : assombries sur fond clair, lumineuses sur fond sombre */
+#poles .stars-bg {
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(85,37,131,0.35), transparent),
+    radial-gradient(1.5px 1.5px at 65% 15%, rgba(251,184,43,0.45), transparent),
+    radial-gradient(1px 1px at 80% 60%, rgba(85,37,131,0.30), transparent),
+    radial-gradient(1.5px 1.5px at 40% 80%, rgba(251,184,43,0.35), transparent),
+    radial-gradient(1px 1px at 90% 25%, rgba(85,37,131,0.30), transparent),
+    radial-gradient(1.5px 1.5px at 10% 65%, rgba(251,184,43,0.30), transparent);
+}
+html.dark #poles .stars-bg {
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1.5px 1.5px at 65% 15%, rgba(251,184,43,0.65), transparent),
+    radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1.5px 1.5px at 40% 80%, rgba(251,184,43,0.55), transparent),
+    radial-gradient(1px 1px at 90% 25%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1.5px 1.5px at 10% 65%, rgba(251,184,43,0.5), transparent);
+}
+
+/* Cartes : claires en mode clair, verre sombre (identité "glass-dark" du
+   reste du site) en mode sombre */
+#poles .glass-dark {
+  background: linear-gradient(160deg, rgba(255,255,255,0.92), rgba(243,238,250,0.85));
+  border: 1px solid rgba(var(--purple-rgb),0.12);
+  box-shadow: 0 20px 45px -25px rgba(var(--purple-rgb),0.25);
+}
+#poles .glass-dark:hover {
+  border-color: rgba(var(--gold-rgb),0.55);
+  box-shadow: 0 25px 55px -20px rgba(var(--purple-rgb),0.3);
+}
+#poles .glass-dark.border-brand-gold\/30 { border-color: rgba(var(--gold-rgb),0.45); }
+
+html.dark #poles .glass-dark {
+  background: linear-gradient(160deg, rgba(var(--purple-light-rgb),0.14), rgba(35,11,58,0.55));
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: none;
+}
+html.dark #poles .glass-dark:hover {
+  border-color: rgba(var(--gold-rgb),0.4);
+  box-shadow: 0 25px 60px -20px rgba(0,0,0,0.5);
+}
+
+/* Texte : encre/violet foncé fixe en mode clair, blanc/or fixe en mode
+   sombre — valeurs FIXES (indépendantes de --ink/--mute) pour rester
+   lisibles quel que soit l'arrière-plan de la section. */
+#poles h2.text-white,
+#poles h3.text-white { color: var(--purple-dark) !important; }
+#poles p.text-slate-200 { color: #4A4460 !important; }
+#poles ul.text-slate-100,
+#poles li .text-slate-100 { color: #241A33 !important; }
+#poles p.text-brand-gold { color: var(--purple) !important; }
+#poles strong { color: var(--purple-dark) !important; font-weight: 800 !important; }
+#poles img[alt] { opacity: 0.14 !important; }
+
+html.dark #poles h2.text-white,
+html.dark #poles h3.text-white { color: #FFFFFF !important; }
+html.dark #poles p.text-slate-200 { color: #E4DEF2 !important; }
+html.dark #poles ul.text-slate-100,
+html.dark #poles li .text-slate-100 { color: #F4F1FA !important; }
+html.dark #poles p.text-brand-gold { color: var(--gold) !important; }
+html.dark #poles strong { color: var(--gold) !important; font-weight: 800 !important; }
+html.dark #poles img[alt] { opacity: 0.22 !important; }
+
+.cta-aurora {
+  background: linear-gradient(120deg, var(--purple), var(--purple-light), var(--gold), var(--purple));
+  background-size: 200% 200%;
+  animation: cta-shift 12s ease infinite;
+}
+@keyframes cta-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.blob { position: absolute; border-radius: 50%; filter: blur(50px); pointer-events: none; animation: blob-drift 14s ease-in-out infinite; }
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  50% { transform: translate(18px,-24px) scale(1.08); }
+}
+
+/* ============ GLASS ============ */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 45px -20px rgba(var(--shadow-color),0.18);
+  transition: transform .5s cubic-bezier(.16,1,.3,1), box-shadow .5s cubic-bezier(.16,1,.3,1), border-color .5s ease, background-color .4s ease;
+}
+.glass:hover {
+  transform: translateY(-8px);
+  border-color: rgba(var(--gold-rgb),0.5);
+  box-shadow: 0 30px 60px -20px rgba(var(--shadow-color),0.28), 0 0 0 1px rgba(var(--gold-rgb),0.25);
+}
+
+.glass-dark {
+  background: linear-gradient(160deg, rgba(var(--purple-light-rgb),0.14), rgba(35,11,58,0.55));
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255,255,255,0.08);
+  transition: all .5s cubic-bezier(.16,1,.3,1);
+}
+.glass-dark:hover {
+  border-color: rgba(var(--gold-rgb),0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 25px 60px -20px rgba(0,0,0,0.5);
+}
+
+/* Vision cards: subtle photo backing behind the glass, kept low-opacity so text stays crisp */
+.vision-card-photo {
+  position: absolute; inset: 0; z-index: 0;
+  background-size: cover; background-position: center;
+  opacity: .10;
+  filter: saturate(1.05);
+  transition: opacity .5s ease, transform .6s ease;
+}
+.vision-card:hover .vision-card-photo { opacity: .18; transform: scale(1.05); }
+.vision-card-photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, var(--bg) 20%, rgba(255,255,255,0.55) 55%, var(--bg) 100%);
+  opacity: .75;
+}
+html.dark .vision-card-photo { opacity: .16; filter: saturate(1.15) brightness(.9); }
+html.dark .vision-card:hover .vision-card-photo { opacity: .26; }
+html.dark .vision-card-photo::after {
+  background: linear-gradient(160deg, var(--bg) 20%, rgba(255,255,255,0.10) 55%, var(--bg) 100%);
+  opacity: .82;
+}
+
+/* Vision cards: framed border that shifts between gold and violet */
+.glass.vision-card {
+  border: 1.5px solid transparent;
+  background:
+    linear-gradient(var(--glass-bg), var(--glass-bg)) padding-box,
+    linear-gradient(120deg, var(--gold) 0%, var(--purple-light) 50%, var(--gold) 100%) border-box;
+  background-size: 100% 100%, 240% 240%;
+  animation: frame-shift 8s ease-in-out infinite;
+}
+.glass.vision-card:hover {
+  animation-duration: 2.5s;
+  transform: translateY(-8px);
+  box-shadow: 0 30px 60px -20px rgba(var(--shadow-color),0.28), 0 0 0 1px rgba(var(--gold-rgb),0.3);
+}
+@keyframes frame-shift {
+  0%, 100% { background-position: 0 0, 0% 30%; }
+  50% { background-position: 0 0, 100% 70%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .glass.vision-card { animation: none; }
+}
+
+/* ============ FLOAT / REVEAL ============ */
+.float-soft { animation: float-soft 6s ease-in-out infinite; }
+@keyframes float-soft { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal.is-visible { opacity: 1; transform: none; }
+
+.stagger > * { opacity: 0; transform: translateY(24px); transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+.stagger.is-visible > *:nth-child(1) { transition-delay: .05s; }
+.stagger.is-visible > *:nth-child(2) { transition-delay: .15s; }
+.stagger.is-visible > *:nth-child(3) { transition-delay: .25s; }
+.stagger.is-visible > *:nth-child(4) { transition-delay: .35s; }
+.stagger.is-visible > *:nth-child(5) { transition-delay: .45s; }
+.stagger.is-visible > *:nth-child(n+6) { transition-delay: .55s; }
+.stagger.is-visible > * { opacity: 1; transform: none; }
+
+.hero-in { opacity: 0; transform: translateY(22px); animation: hero-in .9s cubic-bezier(.16,1,.3,1) forwards; }
+@keyframes hero-in { to { opacity: 1; transform: none; } }
+
+/* ============ CTA GEM ============ */
+.btn-gem { position: relative; box-shadow: 0 0 0 0 rgba(var(--gold-rgb),0.55); animation: gem-pulse 2.6s ease-in-out infinite; }
+@keyframes gem-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(var(--gold-rgb),0.45); }
+  70%  { box-shadow: 0 0 0 14px rgba(var(--gold-rgb),0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--gold-rgb),0); }
+}
+.btn-gem-violet { position: relative; box-shadow: 0 0 0 0 rgba(var(--purple-light-rgb),0.55); animation: gem-pulse-violet 2.6s ease-in-out infinite; }
+@keyframes gem-pulse-violet {
+  0%   { box-shadow: 0 0 0 0 rgba(var(--purple-light-rgb),0.45); }
+  70%  { box-shadow: 0 0 0 14px rgba(var(--purple-light-rgb),0); }
+  100% { box-shadow: 0 0 0 0 rgba(var(--purple-light-rgb),0); }
+}
+
+/* ============ FOOTER STARS ============ */
+.stars-bg {
+  background-image:
+    radial-gradient(1.5px 1.5px at 20% 30%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1.5px 1.5px at 65% 15%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 80% 60%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1.5px 1.5px at 40% 80%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 90% 25%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1.5px 1.5px at 10% 65%, rgba(255,255,255,0.5), transparent);
+  background-repeat: repeat; background-size: 100% 100%;
+  animation: twinkle 5s ease-in-out infinite;
+}
+@keyframes twinkle { 0%,100% { opacity: .6; } 50% { opacity: 1; } }
+
+.ink-link { position: relative; }
+.ink-link::after {
+  content: ''; position: absolute; left: 0; bottom: -3px; width: 0; height: 1px;
+  background: var(--gold); transition: width .35s ease;
+}
+.ink-link:hover::after { width: 100%; }
+
+/* ============ ADAPTIVE SECTION BACKGROUNDS ============ */
+.section-bg { background: var(--bg); }
+.section-bg-soft { background: var(--bg-soft); }
+
+/* ============ DARK MODE TEXT CLARITY (gold / violet / black) ============ */
+/* Body & description copy: near-white for real legibility on dark backgrounds */
+html.dark .text-brand-mute { color: #EDE8F8; }
+html.dark .text-brand-ink { color: #F6F3FC; }
+/* Section eyebrows / titles: brighter violet so they stay crisp on black, in line with the gold-violet-black dark palette */
+html.dark .text-brand-purple { color: #C9A6FF; }
+
+/* ============ HEADER (light / dark adaptive) ============ */
+#main-header {
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.nav-link {
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 8px 0;
+  transition: color .2s ease;
+}
+.nav-link:hover { color: var(--purple); }
+html.dark .nav-link { color: var(--ink); }
+html.dark .nav-link:hover { color: #C9A6FF; }
+
+html.dark #main-header .active-nav-glow { color: #C9A6FF; }
+html.dark #main-header .active-nav-glow::after { background: linear-gradient(90deg, var(--gold), #C9A6FF); }
+
+.solutions-dropdown {
+  background: var(--dropdown-bg);
+  border: 1px solid var(--glass-border);
+}
+.solutions-dropdown-link { color: var(--ink); }
+.solutions-dropdown-link:hover { background: var(--bg-soft); color: var(--purple); }
+html.dark .solutions-dropdown-link:hover { color: #C9A6FF; }
+
+#mobile-hamburger span { background: var(--ink); }
+
+/* Logo stays legible on the dark header too */
+#main-header img[alt="Logo GTEL"] { transition: filter .4s ease; }
+html.dark #main-header img[alt="Logo GTEL"] { filter: brightness(1.5) contrast(1.05) drop-shadow(0 0 10px rgba(var(--purple-light-rgb),.35)); }
+
+/* ============ LANG SWITCHER ============ */
+.lang-switcher { position: relative; }
+.lang-dropdown {
+  position: absolute; top: 100%; right: 0; background: var(--dropdown-bg);
+  backdrop-filter: blur(16px); border-radius: 14px; box-shadow: 0 20px 45px -10px rgba(var(--shadow-color),0.25);
+  padding: 8px; min-width: 130px; opacity: 0; visibility: hidden; transform: translateY(-8px) scale(.96);
+  transform-origin: top right;
+  transition: opacity .3s cubic-bezier(.16,1,.3,1), visibility .3s, transform .35s cubic-bezier(.34,1.56,.64,1); z-index: 1000; border: 1px solid var(--glass-border);
+}
+.lang-switcher:hover .lang-dropdown { opacity: 1; visibility: visible; transform: translateY(0) scale(1); }
+.lang-switcher:hover #current-lang-btn svg { transform: rotate(180deg); }
+.lang-dropdown .lang-btn { opacity: 0; transform: translateX(6px); transition: opacity .3s ease, transform .3s ease, background .2s ease; }
+.lang-switcher:hover .lang-dropdown .lang-btn { opacity: 1; transform: translateX(0); }
+.lang-switcher:hover .lang-dropdown .lang-btn:nth-child(1) { transition-delay: .04s; }
+.lang-switcher:hover .lang-dropdown .lang-btn:nth-child(2) { transition-delay: .09s; }
+.lang-switcher:hover .lang-dropdown .lang-btn:nth-child(3) { transition-delay: .14s; }
+.lang-btn { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 8px; font-size: 12px; font-weight: 700; transition: all .2s ease; cursor: pointer; color: var(--ink); position: relative; }
+#current-lang-btn {
+  padding: 9px 14px; border-radius: 999px; border: 1.5px solid rgba(var(--purple-rgb),0.16);
+  background: linear-gradient(180deg, var(--bg), var(--bg-soft));
+  box-shadow: 0 4px 12px -8px rgba(var(--shadow-color),0.25);
+  transition: border-color .35s ease, box-shadow .35s ease, transform .35s cubic-bezier(.34,1.56,.64,1);
+}
+#current-lang-btn:hover, .lang-switcher:hover #current-lang-btn {
+  border-color: rgba(var(--gold-rgb),0.6); box-shadow: 0 10px 26px -10px rgba(var(--gold-rgb),0.4); transform: translateY(-2px);
+}
+.lang-btn svg { transition: transform .35s cubic-bezier(.34,1.56,.64,1); }
+.lang-btn:hover { background: var(--bg-soft); }
+.lang-btn:hover span:first-child { transform: scale(1.2) rotate(-6deg); display: inline-block; }
+.lang-btn span:first-child { transition: transform .3s cubic-bezier(.34,1.56,.64,1); display: inline-block; }
+.lang-globe { display: inline-flex; color: var(--ink); }
+.lang-globe svg { width: 15px; height: 15px; }
+.lang-btn.active { background: var(--purple); color: white; }
+.lang-btn.active .lang-globe { color: white; }
+.lang-dropdown .lang-btn[data-translit-active]::after {
+  content: ''; position: absolute; left: 4px; top: 50%; transform: translateY(-50%) scaleY(0); width: 3px; height: 60%;
+  border-radius: 3px; background: var(--gold); transition: transform .3s ease;
+}
+.lang-dropdown .lang-btn.active::after { transform: translateY(-50%) scaleY(1); }
+
+/* ============ THEME TOGGLE ============ */
+.theme-toggle {
+  position: relative; width: 52px; height: 30px; border-radius: 999px; overflow: hidden;
+  background: linear-gradient(90deg, #fde9c0, #F8F7FC); border: 1px solid rgba(var(--purple-rgb),0.15);
+  cursor: pointer; transition: background .5s ease, box-shadow .3s ease, border-color .3s ease; flex-shrink: 0;
+}
+html.dark .theme-toggle { background: linear-gradient(90deg, #251140, #14101f); border-color: rgba(255,255,255,0.1); }
+.theme-toggle:hover { box-shadow: 0 0 0 5px rgba(var(--gold-rgb),0.16); border-color: rgba(var(--gold-rgb),0.5); }
+.theme-toggle:active .knob { transform: scale(.88); }
+html.dark .theme-toggle:active .knob { transform: translateX(22px) scale(.88); }
+.theme-toggle .toggle-star { position: absolute; width: 2.5px; height: 2.5px; border-radius: 50%; background: #fff; opacity: 0; transition: opacity .5s ease; animation: sector-twinkle 2.2s ease-in-out infinite; }
+.theme-toggle .toggle-star-1 { top: 7px; left: 34px; animation-delay: -.4s; }
+.theme-toggle .toggle-star-2 { top: 17px; left: 40px; animation-delay: -1.2s; }
+html.dark .theme-toggle .toggle-star { opacity: .9; }
+.theme-toggle .knob {
+  position: absolute; top: 3px; left: 3px; width: 22px; height: 22px; border-radius: 50%; z-index: 1;
+  background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+  display: flex; align-items: center; justify-content: center; color: var(--purple-dark);
+  transition: transform .45s cubic-bezier(.34,1.56,.64,1); box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+html.dark .theme-toggle .knob { transform: translateX(22px); background: linear-gradient(135deg, var(--purple-light), var(--purple)); color: var(--gold); }
+.theme-toggle .knob svg { position: absolute; width: 13px; height: 13px; transition: opacity .35s ease, transform .5s cubic-bezier(.34,1.56,.64,1); }
+.theme-toggle .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+.theme-toggle .icon-moon { opacity: 0; transform: rotate(-90deg) scale(.4); }
+html.dark .theme-toggle .icon-sun { opacity: 0; transform: rotate(90deg) scale(.4); }
+html.dark .theme-toggle .icon-moon { opacity: 1; transform: rotate(0deg) scale(1); }
+
+/* Badge du hero — même principe que .blueprint-index sur salles-reunion.html :
+   fond var(--bg-soft), bordure var(--border-strong), texte accentué,
+   donc clair en mode clair et sombre en mode sombre, au lieu de bg-white/10
+   fixe qui restait sombre dans les deux thèmes. */
+.hero-badge2 {
+  background: var(--bg-soft) !important;
+  border: 1px solid var(--border-strong) !important;
+  color: var(--gold-dark) !important;
+  backdrop-filter: blur(18px);
+}
+html.dark .hero-badge2 { color: var(--gold) !important; }
+
+/* ============ MISC ============ */
+/* Soulignement animé sous le titre hero — dégradé or -> violet, comme sur salles-reunion.html */
+.hero-glow-underline {
+  display: block;
+  width: 90px;
+  height: 4px;
+  border-radius: 999px;
+  margin: 18px auto 0;
+  background: linear-gradient(90deg, var(--gold), var(--purple-light));
+  background-size: 200% 100%;
+  animation: hero-underline-sweep 3.5s ease-in-out infinite;
+}
+@keyframes hero-underline-sweep {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+/* Titre hero : dégradé animé qui balaie tout le titre en boucle
+   (texte → violet → or → texte) — identique à salles-reunion.html
+   (100deg, 260%, 7s linear, arrêts à 30/45/55/70%). Le hero bascule
+   désormais lui aussi vers var(--bg) selon le thème (voir .aurora-bg
+   et .hero-video-bg::after plus bas), donc le point de départ/arrivée
+   du balayage utilise var(--ink), comme sur la page salle. */
+.hero-title-shine {
+  background: linear-gradient(100deg, var(--ink) 30%, var(--purple-light) 45%, var(--gold) 55%, var(--ink) 70%);
+  background-size: 260% 100%;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
+  animation: title-shine 7s linear infinite;
+}
+@keyframes title-shine {
+  0%   { background-position: 0% 50%; }
+  100% { background-position: -260% 50%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-title-shine { animation: none; background-position: 0% 50%; }
+}
+/* .hero-in et .hero-title-shine partagent tous les deux la propriété
+   raccourcie `animation` : sans cette règle combinée, la déclaration la
+   plus basse dans la feuille de style écraserait l'autre et l'animation
+   d'entrée (fondu + glissement) du titre ne se déclencherait jamais. */
+.hero-in.hero-title-shine {
+  animation: hero-in .9s cubic-bezier(.16,1,.3,1) forwards, title-shine 7s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-in.hero-title-shine { animation: hero-in .9s cubic-bezier(.16,1,.3,1) forwards; }
+}
+.active-nav-glow::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--gold), var(--purple)); border-radius: 9999px; }
+
+/* ══════════════════════════════════════════════════════════════════
+   ÉCOSYSTÈME — partenaires en "arbres" (tronc + branches + feuilles)
+   ══════════════════════════════════════════════════════════════════ */
+.partner-tree {
+  position: relative; padding: 30px 22px 26px 40px; border-radius: 28px;
+  background: linear-gradient(160deg, rgba(var(--purple-rgb),0.045), rgba(var(--gold-rgb),0.03));
+  border: 1px solid rgba(var(--purple-rgb),0.08); overflow: hidden;
+  transition: border-color .4s ease, box-shadow .4s ease, transform .4s ease;
+}
+.partner-tree:hover { border-color: rgba(var(--gold-rgb),0.35); box-shadow: 0 20px 40px -22px rgba(var(--shadow-color),0.3); transform: translateY(-4px); }
+html.dark .partner-tree { background: linear-gradient(160deg, rgba(var(--purple-light-rgb),0.08), rgba(var(--gold-rgb),0.02)); border-color: rgba(255,255,255,0.07); }
+
+/* tronc vertical */
+.partner-tree::before {
+  content: ''; position: absolute; left: 26px; top: 66px; bottom: 26px; width: 3px; border-radius: 3px;
+  background: linear-gradient(180deg, var(--purple-light), var(--purple) 55%, var(--purple-dark));
+  transform: scaleY(0); transform-origin: top; transition: transform 1.1s cubic-bezier(.16,1,.3,1) .25s;
+}
+.stagger.is-visible > .partner-tree::before { transform: scaleY(1); }
+
+/* petites racines décoratives en bas du tronc */
+.partner-tree .tree-roots {
+  position: absolute; left: 15px; bottom: 10px; width: 24px; height: 24px; z-index: 0; opacity: .5; color: var(--purple);
+}
+html.dark .partner-tree .tree-roots { color: var(--purple-light); }
+
+.tree-canopy-label {
+  display: inline-flex; align-items: center; gap: 10px; font-family: 'Nunito', sans-serif; font-weight: 800;
+  font-size: 12px; letter-spacing: .05em; text-transform: uppercase; color: var(--purple); margin-bottom: 22px;
+  position: relative; z-index: 1;
+}
+html.dark .tree-canopy-label { color: #E4DCFA; }
+.tree-canopy-icon {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--purple-light), var(--purple)); display: flex; align-items: center; justify-content: center;
+  color: #fff; box-shadow: 0 8px 16px -6px rgba(var(--shadow-color),0.5);
+}
+.tree-canopy-icon svg { width: 16px; height: 16px; }
+
+.tree-leaves { display: flex; flex-direction: column; gap: 11px; position: relative; z-index: 1; }
+.tree-leaf {
+  position: relative; display: inline-flex; align-items: center; gap: 6px; align-self: flex-start;
+  margin-left: 26px; padding: 7px 15px 7px 11px; background: var(--bg); border: 1px solid rgba(var(--purple-rgb),0.14);
+  border-radius: 999px; font-size: 11px; font-weight: 800; color: var(--ink);
+  box-shadow: 0 4px 10px -6px rgba(var(--shadow-color),0.18); transform-origin: left center;
+  transition: transform .35s cubic-bezier(.34,1.56,.64,1), box-shadow .35s ease, border-color .35s ease, background .3s ease;
+  animation: leaf-sway 4.5s ease-in-out infinite;
+}
+.tree-leaf::before {
+  content: ''; position: absolute; left: -26px; top: 50%; width: 22px; height: 2px;
+  background: linear-gradient(90deg, var(--gold), rgba(var(--gold-rgb),0.15));
+}
+.tree-leaf .leaf-icon { color: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.tree-leaf .leaf-icon svg { width: 12px; height: 12px; }
+.tree-leaf .leaf-icon img { width: 18px; height: 18px; object-fit: contain; display: block; }
+.tree-leaf:hover { transform: translateX(5px) rotate(-2deg) scale(1.06); border-color: rgba(var(--gold-rgb),0.55); box-shadow: 0 12px 22px -10px rgba(var(--gold-rgb),0.4); }
+
+.tree-leaf-logo { padding: 8px 16px; }
+.tree-leaf-logo img { width: 70px; height: 26px; object-fit: contain; display: block; }
+
+@keyframes leaf-sway { 0%,100% { transform: rotate(-1.4deg); } 50% { transform: rotate(1.4deg); } }
+.tree-leaf:nth-child(3n+1) { animation-delay: 0s; }
+.tree-leaf:nth-child(3n+2) { animation-delay: -1.5s; }
+.tree-leaf:nth-child(3n+3) { animation-delay: -3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-tree::before, .tree-leaf { animation: none !important; transition: none !important; transform: none !important; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   EXPERTISE SECTORIELLE — tuiles carrées "magiques"
+   ══════════════════════════════════════════════════════════════════ */
+
+.sector-tile {
+  position: relative; aspect-ratio: 1 / 1; border-radius: 32px; overflow: hidden; cursor: pointer;
+  isolation: isolate; background: linear-gradient(160deg, var(--purple), #251140);
+  box-shadow: 0 20px 50px -22px rgba(var(--shadow-color),0.35);
+  transition: transform .6s cubic-bezier(.16,1,.3,1), box-shadow .6s cubic-bezier(.16,1,.3,1);
+}
+.sector-tile:hover { transform: translateY(-10px) scale(1.015); box-shadow: 0 34px 70px -18px rgba(var(--gold-rgb),0.4), 0 0 0 2px rgba(var(--gold-rgb),0.55); }
+
+/* halo magique tournant */
+.sector-tile::before {
+  content: ''; position: absolute; inset: -2px; z-index: 0; border-radius: 34px;
+  background: conic-gradient(from 0deg, var(--gold), var(--purple-light), var(--purple), var(--gold));
+  opacity: 0; transition: opacity .6s ease; animation: sector-spin 5s linear infinite;
+}
+.sector-tile:hover::before { opacity: .85; }
+@keyframes sector-spin { to { transform: rotate(360deg); } }
+
+.sector-tile .sector-photo-frame {
+  position: absolute; inset: 2px; z-index: 1; border-radius: 30px; overflow: hidden;
+}
+.sector-tile .sector-photo {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 1.3s cubic-bezier(.16,1,.3,1), filter .6s ease;
+  filter: saturate(1.08) contrast(1.03);
+}
+.sector-tile:hover .sector-photo { transform: scale(1.14) rotate(.4deg); }
+
+/* étincelle qui balaye la photo au survol */
+.sector-tile .sector-shimmer {
+  position: absolute; inset: 2px; z-index: 2; border-radius: 30px; pointer-events: none;
+  background: linear-gradient(115deg, transparent 35%, rgba(255,255,255,.5) 50%, transparent 65%);
+  background-size: 250% 250%; background-position: -150% -150%; opacity: 0;
+}
+.sector-tile:hover .sector-shimmer { opacity: 1; animation: sector-shimmer-sweep 1.1s ease forwards; }
+@keyframes sector-shimmer-sweep { from { background-position: -150% -150%; } to { background-position: 150% 150%; } }
+
+.sector-tile .sector-overlay {
+  position: absolute; inset: 2px; z-index: 3; border-radius: 30px; pointer-events: none;
+  background: linear-gradient(0deg, rgba(18,9,32,0.95) 0%, rgba(18,9,32,0.62) 32%, rgba(18,9,32,0.08) 62%, transparent 82%);
+}
+
+.sector-tile .sector-content {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; padding: 26px 26px 24px;
+  color: #fff;
+}
+.sector-tile .sector-icon-badge {
+  width: 54px; height: 54px; border-radius: 16px; margin-bottom: 16px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, rgba(var(--gold-rgb),0.95), rgba(var(--purple-light-rgb),0.9));
+  box-shadow: 0 10px 22px -8px rgba(0,0,0,0.55);
+  transition: transform .5s cubic-bezier(.16,1,.3,1);
+}
+.sector-tile:hover .sector-icon-badge { transform: translateY(-4px) rotate(-6deg) scale(1.06); }
+.sector-tile .sector-icon-badge svg { width: 26px; height: 26px; color: #2b1245; }
+
+.sector-tile .sector-title {
+  font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.5rem; line-height: 1.2;
+  margin-bottom: 6px; text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+.sector-tile .sector-rule {
+  width: 34px; height: 2px; margin-bottom: 10px; border-radius: 999px;
+  background: linear-gradient(90deg, var(--gold), var(--purple-light));
+  transition: width .5s cubic-bezier(.16,1,.3,1);
+}
+.sector-tile:hover .sector-rule { width: 64px; }
+.sector-tile .sector-desc {
+  font-family: 'Nunito', sans-serif; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.88);
+  max-height: 0; opacity: 0; overflow: hidden; transition: max-height .55s ease, opacity .45s ease;
+}
+.sector-tile:hover .sector-desc { max-height: 140px; opacity: 1; }
+
+/* étoile scintillante décorative */
+.sector-tile .sector-sparkle {
+  position: absolute; top: 20px; right: 20px; z-index: 4; opacity: .85;
+  animation: sector-twinkle 2.4s ease-in-out infinite;
+}
+@keyframes sector-twinkle { 0%,100% { opacity: .35; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.05); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .sector-tile, .sector-tile .sector-photo, .sector-tile::before { animation: none !important; transition: none !important; }
+}
+
+/* En dessous de 768px (mode carrousel tactile) : pas de hover disponible,
+   donc le contenu (description, icône, halo) reste visible en permanence. */
+@media (max-width: 767px) {
+  .sector-tile .sector-desc { max-height: 140px; opacity: 1; }
+  .sector-tile .sector-rule { width: 64px; }
+  .sector-tile .sector-icon-badge { transform: translateY(-2px); }
+  .sector-tile::before { opacity: .55; }
+  .sector-tile:active { transform: scale(.97); }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   CARROUSEL (cartes solutions / secteurs en mode mobile)
+   ══════════════════════════════════════════════════════════════════ */
+.carousel-viewport { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+.carousel-viewport::-webkit-scrollbar { display: none; }
+.carousel-track { display: flex; gap: 16px; }
+.carousel-slide { scroll-snap-align: start; flex: 0 0 82%; }
+@media (min-width: 480px) { .carousel-slide { flex: 0 0 55%; } }
+
+.carousel-dots { display: flex; justify-content: center; gap: 7px; margin-top: 18px; }
+.carousel-dot { width: 7px; height: 7px; border-radius: 999px; background: rgba(var(--purple-rgb),0.2); transition: all .3s ease; cursor: pointer; border: none; padding: 0; }
+.carousel-dot.active { width: 22px; background: var(--gold); }
+
+.carousel-nav-btn {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--bg); border: 1px solid rgba(var(--purple-rgb),0.14);
+  display: flex; align-items: center; justify-content: center; color: var(--purple); cursor: pointer;
+  transition: all .25s ease; box-shadow: 0 6px 16px -8px rgba(var(--shadow-color),0.25);
+}
+.carousel-nav-btn:hover { background: var(--purple); color: #fff; transform: translateY(-2px); }
+.carousel-nav-btn svg { width: 16px; height: 16px; }
+
+/* Grille desktop classique au-delà de md, carrousel seulement en dessous */
+@media (min-width: 768px) {
+  .carousel-viewport.md-grid, .carousel-viewport.md-grid-flex { overflow: visible; scroll-snap-type: none; }
+  .carousel-viewport.md-grid .carousel-track { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .carousel-viewport.md-grid .carousel-slide { flex: none; scroll-snap-align: none; }
+  /* variante centrée : les tuiles s'enroulent et se centrent (utile quand le nombre d'éléments n'est pas un multiple des colonnes) */
+  .carousel-viewport.md-grid-flex .carousel-track { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; }
+  .carousel-viewport.md-grid-flex .carousel-slide { flex: 1 1 300px; max-width: 320px; scroll-snap-align: none; }
+  .carousel-dots, .carousel-nav-btn.mobile-only { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   SOLUTIONS CAROUSEL (bureau) — pagine 3 cartes à la fois via flèches
+   ══════════════════════════════════════════════════════════════════ */
+.solutions-carousel-wrap { position: relative; }
+.solutions-carousel-viewport { overflow: hidden; }
+
+#solutions-container-grid.sol-carousel-track {
+  display: flex; flex-wrap: nowrap; gap: 1.5rem;
+  transition: transform .55s cubic-bezier(.16,1,.3,1);
+  will-change: transform;
+}
+#solutions-container-grid.sol-carousel-track > .solution-card { flex-shrink: 0; }
+
+.carousel-arrow {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 46px; height: 46px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg); border: 1px solid rgba(var(--purple-rgb),0.16); color: var(--purple);
+  box-shadow: 0 14px 30px -14px rgba(var(--shadow-color),0.35);
+  cursor: pointer; z-index: 20; transition: all .25s ease;
+}
+.carousel-arrow svg { width: 20px; height: 20px; }
+.carousel-arrow:hover { background: var(--purple); color: #fff; border-color: var(--purple); transform: translateY(-50%) scale(1.08); }
+.carousel-arrow:disabled { opacity: .3; cursor: default; pointer-events: none; }
+.carousel-arrow-prev { left: -8px; }
+.carousel-arrow-next { right: -8px; }
+@media (min-width: 1280px) {
+  .carousel-arrow-prev { left: -56px; }
+  .carousel-arrow-next { right: -56px; }
+}
+html.dark .carousel-arrow { color: #C9A6FF; }
+html.dark .carousel-arrow:hover { background: var(--purple); color: #fff; }
+
+.sol-carousel-dots { display: none; }
+.sol-carousel-dots.is-active { display: flex; }
+.sol-dot {
+  width: 8px; height: 8px; border-radius: 999px; padding: 0; cursor: pointer;
+  border: none; background: rgba(var(--purple-rgb),0.2); transition: all .3s ease;
+}
+html.dark .sol-dot { background: rgba(255,255,255,0.2); }
+.sol-dot.active { width: 24px; background: var(--gold); }
+
+/* En dessous de 768px : pile mobile (deck) prend le relais, pas de flèches/pagination */
+@media (max-width: 767px) {
+  .carousel-arrow { display: none; }
+}
+
+/* ══════════════════════════════════════════════════════════════════
+   HERO VIDEO
+   ══════════════════════════════════════════════════════════════════ */
+.hero-video-bg {
+  position: absolute; inset: 0; z-index: 0; overflow: hidden;
+}
+.hero-video-bg video {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; display: block; z-index: 0;
+}
+/* Voile posé sur la vidéo — fond dans var(--bg) selon le thème, comme
+   le fondu photo->bg de .hero-photo-section sur salles-reunion.html :
+   clair et léger en mode clair, dense et sombre en mode sombre. */
+.hero-video-bg::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--bg) 55%, transparent) 0%,
+    color-mix(in srgb, var(--bg) 30%, transparent) 30%,
+    color-mix(in srgb, var(--bg) 55%, transparent) 65%,
+    color-mix(in srgb, var(--bg) 88%, transparent) 100%);
+}
+html.dark .hero-video-bg::after {
+  background: linear-gradient(180deg,
+    rgba(60,24,96,.28) 0%,
+    rgba(var(--purple-rgb),.12) 30%,
+    rgba(60,24,96,.28) 65%,
+    rgba(20,14,35,.68) 100%);
+}
+.hero-video-bg::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 2;
+  background: radial-gradient(60% 55% at 50% 35%, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 70%);
+  pointer-events: none;
+}
+html.dark .hero-video-bg::before {
+  background: radial-gradient(60% 55% at 50% 35%, rgba(255,255,255,.14) 0%, rgba(255,255,255,0) 70%);
+}
+/* Solution card CTA sans flèche "vieux" style : simple soulignement + point */
+.solution-more { display: inline-flex; align-items: center; gap: 8px; }
+.solution-more .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); transition: transform .3s ease; }
+.solution-card:hover .solution-more .dot { transform: scale(2.2); }
+
+/* ══════════════════════════════════════════════════════════════════
+   PILE DE CARTES MOBILE (deck) — cartes/arbres empilés, glissables,
+   utilisés en dessous de 768px pour raccourcir les longues sections
+   (Solutions, Secteurs, Partenaires, Pôles). Inspiré du composant
+   "cards-stack" du projet Cudy.
+   ══════════════════════════════════════════════════════════════════ */
+@media (max-width: 767px) {
+  .deck-stack {
+    position: relative;
+    min-height: 220px;
+    transition: min-height .4s ease;
+    touch-action: pan-y;
+  }
+  .deck-stack > .deck-item {
+    position: absolute; top: 0; left: 0; right: 0;
+    width: 100%; margin: 0 auto;
+    opacity: 0; visibility: hidden; pointer-events: none;
+    transition: transform .55s cubic-bezier(.4,0,.2,1), opacity .5s ease, visibility .55s;
+    transform-origin: center top;
+  }
+  .deck-stack > .deck-item.deck-active {
+    opacity: 1; visibility: visible; pointer-events: auto; z-index: 10;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  .deck-stack > .deck-item.deck-below {
+    opacity: .45; visibility: visible; z-index: 3;
+    transform: translateY(14px) scale(.93) rotate(1.4deg);
+  }
+  .deck-stack > .deck-item.deck-below-2 {
+    opacity: .22; visibility: visible; z-index: 2;
+    transform: translateY(28px) scale(.86) rotate(2.6deg);
+  }
+  .deck-stack > .deck-item.deck-below-3 {
+    opacity: .08; visibility: visible; z-index: 1;
+    transform: translateY(42px) scale(.79) rotate(3.8deg);
+  }
+  .deck-stack > .deck-item.deck-active { cursor: pointer; }
+  .deck-dots { display: flex; justify-content: center; gap: 10px; margin-top: 24px; }
+  .deck-dot {
+    width: 9px; height: 9px; border-radius: 50%; padding: 0; cursor: pointer;
+    border: 2px solid rgba(var(--purple-rgb),0.25); background: transparent;
+    transition: all .3s ease;
+  }
+  html.dark .deck-dot { border-color: rgba(255,255,255,0.2); }
+  .deck-dot.active {
+    background: var(--gold); border-color: var(--gold); transform: scale(1.35);
+    box-shadow: 0 0 14px rgba(var(--gold-rgb),0.5);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .deck-stack > .deck-item { transition: opacity .3s ease !important; }
+}
+/* Au-delà de 767px : jamais de pile, toujours la grille/le flex normal */
+@media (min-width: 768px) {
+  .deck-stack > .deck-item { position: static !important; opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; transform: none !important; }
+  .deck-dots { display: none !important; }
+}
+/* ============ FIX: champs du formulaire de devis illisibles en mode sombre ============ */
+/* Le fond de la modale de devis reste clair même en dark mode, donc on force
+   le texte et le placeholder des champs à rester sombres pour rester lisibles. */
+html.dark #quote-modal-overlay input,
+html.dark #quote-modal-overlay select,
+html.dark #quote-modal-overlay textarea {
+  color: #1A1A2E !important;
+}
+html.dark #quote-modal-overlay input::placeholder,
+html.dark #quote-modal-overlay textarea::placeholder {
+  color: #6B6B8A !important;
+}
