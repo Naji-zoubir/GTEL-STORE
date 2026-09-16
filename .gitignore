@@ -1,5 +1,1 @@
-```
-# Build artifacts
-gtel-v2/assets/css/gtel-v2.min.css
-gtel-v2/assets/js/gtel-v2.min.js
-```
+Nothing needs to be added to .gitignore since the changes only include source files (.md, .css, .js, .html) and no build artifacts, dependencies, or temporary files.
